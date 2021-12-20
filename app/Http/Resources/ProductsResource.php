@@ -16,7 +16,7 @@ class ProductsResource extends JsonResource
         $images = [];
         if ($image) {
             foreach ($image as $img) {
-                array_push($images, url('/public/storage/'. $img)  );
+                array_push($images, url('storage/'. $img)  );
             }
         }
 
@@ -24,7 +24,7 @@ class ProductsResource extends JsonResource
             'id' => $this->id,
             'name_en' => $this->getTranslatedAttribute('name', 'en'),
             'name_ar' => $this->getTranslatedAttribute('name', 'ar'),
-            'image' => $this->image ? url('/public/storage/'. $this->image): "",
+            'image' => $this->image ? url('storage/'. $this->image): "",
             'images' => $images ? $images : [],
             'price' => $this->price,
             'quantity' => $this->quantity,

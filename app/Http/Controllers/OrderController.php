@@ -152,7 +152,7 @@ class OrderController extends Controller
         if($data){
             return OrdersResource::collection($data);
         }
-        else{       
+        else{
             return $data;
         }
     }
@@ -165,7 +165,7 @@ class OrderController extends Controller
             return OrdersResource::collection($data);
         }
         else{
-            return $data;   
+            return $data;
         }
     }
 
@@ -180,7 +180,7 @@ class OrderController extends Controller
         else{
             return $data;
         }
-        
+
     }
 
     public function rejected()
@@ -252,8 +252,8 @@ class OrderController extends Controller
 
     public function dealer_orders(){
 
-        if(auth('api')->user()){
-            $userId = auth('api')->user()->id;
+        if(auth()->user()){
+            $userId = auth()->user()->id;
             $order=OrderItem::where('product_dealer_id',$userId)->whereHas( 'order' , function($q)  {
                 $q->where('status', '0');
             })->paginate(30);
@@ -310,7 +310,7 @@ class OrderController extends Controller
                 'message' => 'in progress orders returned successfully',
                 "status"=>true,
                 'data' => OrderItemsResource::collection($order),
-                
+
             ]);
 
                     }else{
@@ -336,11 +336,11 @@ class OrderController extends Controller
                 $q->where('status', '2');
             })->paginate(30);
         if(count($order)>0){
-            
 
-              
+
+
             return OrderItemsResource::collection($order);
-            
+
 
             }else{
                 return response()->json([
@@ -388,7 +388,7 @@ class OrderController extends Controller
     public function dealer_sold_orders(){
 
         $week_before=  \Carbon\Carbon::today()->subDays(7);
-        $week_before_last_week = \Carbon\Carbon::today()->subDays(14); 
+        $week_before_last_week = \Carbon\Carbon::today()->subDays(14);
         $today=today();
         $week_sum =0;
         $last_week_sum = 0;
@@ -419,7 +419,7 @@ class OrderController extends Controller
                 $sold_total += $item->product_price * $item->product_qty;
                 $sold_total_qty += $item->product_qty;
             }
-            
+
 
             $total_amount = $total_stock_qty + $sold_total_qty;
 
@@ -454,9 +454,9 @@ class OrderController extends Controller
             foreach($this_week_earning as $week){
                 $week_sum+= $week->sum('product_qty');
             }
-            
+
             return $week_sum;
-            
+
             $approximate_weekly_rate=0;
             $weekly_rate_percentage  =  ($week_sum /$total_amount)*100;
             $approximate_weekly_rate = number_format((float)$weekly_rate_percentage, 2, '.', '');

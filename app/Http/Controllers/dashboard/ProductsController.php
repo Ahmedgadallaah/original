@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PartsController;
 use App\Http\Resources\PartsResource;
 
@@ -24,11 +25,15 @@ class ProductsController extends Controller
         $parts = $partsData->dealer_pending_parts();
         $result =  $parts->toJson();
 
-    //    return $result;
+        $orderController = new OrderController;
+        $orders = $orderController->dealer_orders();
+
+        // return $orders->getData();
 
         $data = [
             'home' => $dealerData,
             'parts' =>  $result,
+            'orders' => $orders->getData(),
         ];
         return view('dashboard.index', $data);
     }

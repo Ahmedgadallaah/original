@@ -128,12 +128,11 @@
                                                                         @endif
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col-md-8">
                                                                     <div class="prod-txts-parts">
                                                                         <h6>{{ $part->name }}</h6>
                                                                         <span> <i class="fas fa-map-marker-alt"></i>
-                                                                            الماركة : {{ $part->mark->name_ar }}}
+                                                                            الماركة : {{ $part->mark->name_ar }}
                                                                         </span>
                                                                         <span> <i class="fa fa-clock"></i>
                                                                             سنة الصنع : {{ $part->year->year }}
@@ -153,21 +152,20 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <img src="images/x.png" width="20" alt="">
-                                                                <img src="images/right.png" width="20" alt="">
+                                                                {{-- <img src="{{  asset('dash/images/x.png') }}" width="20" alt="">
+                                                                <img src="{{  asset('dash/images/right.png') }}" width="20" alt=""> --}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             @empty
-                                                There is no requested parts
+                                                لا يوجد قطع مطلوبه
                                             @endforelse
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="parts-sec-all">
-
                                             <div class="parts-title-sec">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -181,24 +179,33 @@
                                                 </div>
                                             </div>
 
+
+
+                                            @forelse ( $orders->data as $order )
+
+
                                             <div class="parts-contect-sec">
                                                 <div class="row">
                                                     <div class="col-md-9">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="prod-img-parts">
-                                                                    <img src="images/product.png" width="100%">
+                                                                    <img src="{{  $order->product->image??'' }}" width="100%">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="prod-txts-parts">
-                                                                    <h6>عنوان الطلب</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i> مصر
-                                                                        القاهرة التوفقية </span>
-                                                                    <span> <i class="fa fa-clock"></i> الخميس 22 نوفمبر
+                                                                    <h6>العنوان</h6>
+                                                                    <span> <i class="fas fa-map-marker-alt"></i>
+
+                                                                    {{  $order->order->name }}
                                                                     </span>
-                                                                    <span> <i class="fas fa-credit-card"></i> الدفع عند
-                                                                        الاستلام </span>
+                                                                    <span> <i class="fa fa-clock"></i>
+                                                                         الكمية : {{  $order->quantity }}
+                                                                    </span>
+                                                                    <span> <i class="fas fa-credit-card"></i>
+                                                                      الهاتف  : {{  $order->order->phone }}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -211,125 +218,9 @@
                                                 </div>
                                             </div>
 
-                                            <div class="parts-contect-sec">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="prod-img-parts">
-                                                                    <img src="images/product.png" width="100%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="prod-txts-parts">
-                                                                    <h6>عنوان الطلب</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i> مصر
-                                                                        القاهرة التوفقية </span>
-                                                                    <span> <i class="fa fa-clock"></i> الخميس 22 نوفمبر
-                                                                    </span>
-                                                                    <span> <i class="fas fa-credit-card"></i> الدفع عند
-                                                                        الاستلام </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div style="text-align: left;">
-                                                            <img src="images/right.png" width="20" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="parts-contect-sec">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="prod-img-parts">
-                                                                    <img src="images/product.png" width="100%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="prod-txts-parts">
-                                                                    <h6>عنوان الطلب</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i> مصر
-                                                                        القاهرة التوفقية </span>
-                                                                    <span> <i class="fa fa-clock"></i> الخميس 22 نوفمبر
-                                                                    </span>
-                                                                    <span> <i class="fas fa-credit-card"></i> الدفع عند
-                                                                        الاستلام </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div style="text-align: left;">
-                                                            <img src="images/right.png" width="20" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="parts-contect-sec">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="prod-img-parts">
-                                                                    <img src="images/product.png" width="100%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="prod-txts-parts">
-                                                                    <h6>عنوان الطلب</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i> مصر
-                                                                        القاهرة التوفقية </span>
-                                                                    <span> <i class="fa fa-clock"></i> الخميس 22 نوفمبر
-                                                                    </span>
-                                                                    <span> <i class="fas fa-credit-card"></i> الدفع عند
-                                                                        الاستلام </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div style="text-align: left;">
-                                                            <img src="images/right.png" width="20" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="parts-contect-sec">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="prod-img-parts">
-                                                                    <img src="images/product.png" width="100%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="prod-txts-parts">
-                                                                    <h6>عنوان الطلب</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i> مصر
-                                                                        القاهرة التوفقية </span>
-                                                                    <span> <i class="fa fa-clock"></i> الخميس 22 نوفمبر
-                                                                    </span>
-                                                                    <span> <i class="fas fa-credit-card"></i> الدفع عند
-                                                                        الاستلام </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div style="text-align: left;">
-                                                            <img src="images/right.png" width="20" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @empty
+                                                لا يوجد طلبات
+                                            @endforelse
 
                                         </div>
                                     </div>
