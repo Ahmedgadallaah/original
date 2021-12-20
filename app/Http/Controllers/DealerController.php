@@ -29,7 +29,6 @@ class DealerController extends Controller
         $qty = 0;
         $week_sum = 0;
         $week_sum1 = 0;
-
         $day_earn = Order::where('status', 2)
             ->whereDate('updated_at', '=', date('Y-m-d'))->whereHas('order_items', function ($q) use ($user_id) {
                 $q->where('product_dealer_id', $user_id);
@@ -41,8 +40,6 @@ class DealerController extends Controller
             $sum += $day->sum('product_total');
             $qty += $day->sum('product_qty');
         }
-
-
         $week_earn = Order::where('status', 2)
             ->whereDate('updated_at', '>=', $week_before)->whereDate('updated_at', '<=', $today)->whereHas('order_items', function ($q) use ($user_id) {
                 $q->where('product_dealer_id', $user_id);
@@ -54,15 +51,9 @@ class DealerController extends Controller
         foreach ($week_earn as $week) {
             $week_sum += $week->sum('product_total');
         }
-
         $user = auth()->id();
-
-
         $latest_orders = Part::where('status', 1)->take(10)->latest()->get();
-
         //
-
-
         $stock = Product::where('dealer_id', $user_id)->get();
         $total_stock = 0;
         $total_stock_qty = 0;
@@ -81,7 +72,6 @@ class DealerController extends Controller
             $sold_total += $item->product_price * $item->product_qty;
             $sold_total_qty += $item->product_qty;
         }
-
 
         $total_amount = $total_stock_qty + $sold_total_qty;
 
@@ -135,7 +125,7 @@ class DealerController extends Controller
             ];
         });
 
-$t=number_format((float)(DealerRating::where('dealer_id', $user_id)->avg('rate')), 1) ?? 0;
+        $t=number_format((float)(DealerRating::where('dealer_id', $user_id)->avg('rate')), 1) ?? 0;
 
         return [
             "day_earning" => "$sum",
@@ -159,8 +149,8 @@ $t=number_format((float)(DealerRating::where('dealer_id', $user_id)->avg('rate')
         $week_sum = 0;
         $last_week_sum = 0;
 
-        if (auth('api')->user()) {
-            $user_id = auth('api')->user()->id;
+        if (auth()->user()) {
+            $user_id = auth()->user()->id;
             $order = OrderItem::where('product_dealer_id', $user_id)->whereHas('order', function ($q) {
                 $q->where('status', '2');
             })->orderBy('updated_at' , 'desc')->paginate(30);
@@ -265,8 +255,8 @@ $t=number_format((float)(DealerRating::where('dealer_id', $user_id)->avg('rate')
         $week_sum = 0;
         $last_week_sum = 0;
 
-        if (auth('api')->user()) {
-            $user_id = auth('api')->user()->id;
+        if (auth()->user()) {
+            $user_id = auth()->id();
             $order = OrderItem::where('product_dealer_id', $user_id)->whereHas('order', function ($q) {
                 $q->where('status', '2');
             })->orderBy('updated_at' , 'desc')->paginate(30);

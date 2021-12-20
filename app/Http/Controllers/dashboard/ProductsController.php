@@ -17,17 +17,17 @@ class ProductsController extends Controller
         // dealer info
         $dealer = new DealerController;
         $dealerData = $dealer->home();
-        $home = $dealerData->getData();
-    
+
+
         //  parts
         $partsData = new PartsController();
-        $parts = $partsData->dealer_pending_parts();  
+        $parts = $partsData->dealer_pending_parts();
         $result =  $parts->toJson();
-        
+
     //    return $result;
 
         $data = [
-            'home' => $home,
+            'home' => $dealerData,
             'parts' =>  $result,
         ];
         return view('dashboard.index', $data);

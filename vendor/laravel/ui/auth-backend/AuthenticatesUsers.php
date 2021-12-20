@@ -44,6 +44,10 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
+
             return $this->sendLoginResponse($request);
         }
 
@@ -66,8 +70,7 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $request->validate([
-//            $this->username() => 'required|string',
-            'phone' => 'required|numeric',
+            $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
     }
@@ -151,7 +154,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'phone';
+        return 'email';
     }
 
     /**
