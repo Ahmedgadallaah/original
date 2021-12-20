@@ -31,11 +31,9 @@ class DealersResource extends JsonResource
             'provider'=> $this->provider,
             'provider_id'=> $this->provider_id,
             'shop'=>$this->shop?1:0,
-            
-            'ratings'=> DealerRatingsResource::collection($this->rates),
-            'cars'=> CarsResource::collection($this->cars),
-            
-            // 'shop'=> ShopsResource::collection($this->shop),
+            'ratings'=> DealerRatingsResource::collection($this->whenLoaded('rates')) ,
+            'cars'=> CarsResource::collection($this->whenLoaded('cars')),
+            'shop'=> ShopsResource::collection($this->whenLoaded('shop')),
             'total_rating'=>number_format((float)( DealerRating::where('dealer_id' , $this->id )->avg('rate')), 1)??0,
 
         ];

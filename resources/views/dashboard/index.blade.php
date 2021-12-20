@@ -17,8 +17,8 @@
                                         يساعدك في ذلك <span>حمل التطبيق الأن</span></p>
 
 
-                                    <a href=""><img src="{{ asset('public/dash/images/app-store.png') }}"></a>
-                                    <a href=""><img src="{{ asset('public/dash/images/play-store.png') }}"></a>
+                                    <a href=""><img src="{{ asset('dash/images/app-store.png') }}"></a>
+                                    <a href=""><img src="{{ asset('dash/images/play-store.png') }}"></a>
                                 </div>
                             </div>
 
@@ -38,7 +38,7 @@
                                             <div>
                                                 <h6>تقييم العملاء</h6>
                                                 {{ $home->total_rating }}
-                                                <img src="{{ asset('public/dash/images/star.png') }}" alt="">
+                                                <img src="{{ asset('dash/images/star.png') }}" alt="">
 
 
                                             </div>
@@ -370,7 +370,7 @@
 
                                 <div class="no-activi text-center">
                                     <div class="img-no-activ">
-                                        <img src="{{ asset('public/dash/images/no-activites.png') }}">
+                                        <img src="{{ asset('dash/images/no-activites.png') }}">
                                     </div>
                                 </div>
 

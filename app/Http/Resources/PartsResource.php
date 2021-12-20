@@ -15,26 +15,15 @@ class PartsResource extends JsonResource
      */
     public function toArray($request)
 
-
-
     {
 
         $image= json_decode($this->image);
-        // dd($image);
         $images = [];
         if($image){
             foreach ($image as $img){
                 array_push($images , url('/public/storage/'.$img));
             }
         }
-
-         if(is_null($this->prices)){
-            $c='parts_prices'=>PartPricesResource::collection($this->prices);
-            }
-            else{
-                $c=""
-            }
-
             return [
             'id'=>$this->id,
             'name'=>$this->name,
@@ -43,7 +32,6 @@ class PartsResource extends JsonResource
             'address'=> $this->address,
             'comment'=>$this->comment,
             'status'=>$this->status,
-
             'user'=>new UsersResource($this->user),
             'mark'=>new MarksResource($this->mark),
             'model'=>new ModelsResource($this->model),

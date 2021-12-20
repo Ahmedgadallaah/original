@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 //use App\User;
- use App\Models\User;
- use App\Models\OauthAccessToken;
+use App\Models\User;
+use App\Models\OauthAccessToken;
 use App\DealerRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +24,15 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
 
-            $v = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
             'phone' => 'required|unique:users',
-            'password' => ['required', 'min:8' ]
+            'password' => ['required', 'min:8']
         ]);
 
         if ($v->fails()) {
-                return response()->json(['validation_error'=>$v->errors()->all()]);
+            return response()->json(['validation_error' => $v->errors()->all()]);
         }
 
         $img = $request->image;
@@ -41,8 +41,8 @@ class RegisterController extends Controller
             $img->move(public_path('../storage/app/public/users/apis/'), $fileName);
             // $fileName=url('/public/storage/').$fileName;
 
-        }else{
-            $fileName="";
+        } else {
+            $fileName = "";
         }
 
         // $lat = (float) $request['lat'];
@@ -50,21 +50,21 @@ class RegisterController extends Controller
 
 
         $user = User::create([
-            'name'=> $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'phone'=> $request->phone,
+            'phone' => $request->phone,
             // 'location' => DB::raw("ST_GeomFromText('POINT({$lng} {$lat})')"),
-            'address' => $request->address?$request->address:"",
+            'address' => $request->address ? $request->address : "",
             'type' => "user",
             'point' => 0,
             'approve' => 1,
-            'valid_to'=> "2000-1-1",
-            'avatar'=> $fileName,
-            'email_verified_at'=> now(),
-            'provider'=> $request->provider?$request->provider:"",
-            'provider_id'=> $request->provider_id?$request->provider_id:"",
-            "phone_verified"=>0,
+            'valid_to' => "2000-1-1",
+            'avatar' => $fileName,
+            'email_verified_at' => now(),
+            'provider' => $request->provider ? $request->provider : "",
+            'provider_id' => $request->provider_id ? $request->provider_id : "",
+            "phone_verified" => 0,
             'login' => 1,
         ]);
 
@@ -75,32 +75,32 @@ class RegisterController extends Controller
 
         return response()->json([
 
-         'data'   => new UsersResource(User::find($user->id)),
-         'token'  => $token,
+            'data'   => new UsersResource(User::find($user->id)),
+            'token'  => $token,
         ]);
     }
 
     public function dealer_register(Request $request)
     {
 
-            $v = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
             'phone' => 'required|unique:users',
-            'password' => ['required', 'min:8' ]
+            'password' => ['required', 'min:8']
         ]);
 
         if ($v->fails()) {
-                return response()->json(['validation_error'=>$v->errors()->all()]);
+            return response()->json(['validation_error' => $v->errors()->all()]);
         }
 
         $img = $request->image;
         if ($request->hasFile('image')) {
             $fileName = '/users/apis/' . time() . $img->getClientOriginalName();
             $img->move(public_path('../storage/app/public/users/apis/'), $fileName);
-            $fileName=$fileName;
-        }else{
-            $fileName="";
+            $fileName = $fileName;
+        } else {
+            $fileName = "";
         }
 
         // $lat = (float) $request['lat'];
@@ -108,21 +108,21 @@ class RegisterController extends Controller
 
 
         $user = User::create([
-            'name'=> $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'phone'=> $request->phone,
-            'address' => $request->address?$request->address:"",
+            'phone' => $request->phone,
+            'address' => $request->address ? $request->address : "",
             'type' => "dealer",
-            'point'=> 0,
+            'point' => 0,
             'approve' => 0,
-            'valid_to'=> "2000-1-1",
-            'avatar'=> $fileName,
-            'email_verified_at'=> now(),
-            'provider'=> $request->provider?$request->provider:"",
-            'trusted' =>0,
-            'provider_id'=> $request->provider_id?$request->provider_id:"",
-            "phone_verified"=>0,
+            'valid_to' => "2000-1-1",
+            'avatar' => $fileName,
+            'email_verified_at' => now(),
+            'provider' => $request->provider ? $request->provider : "",
+            'trusted' => 0,
+            'provider_id' => $request->provider_id ? $request->provider_id : "",
+            "phone_verified" => 0,
             'login' => 1,
         ]);
 
@@ -133,7 +133,7 @@ class RegisterController extends Controller
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
 
         return response()->json([
-            'message' =>"Your Account Created Successfully ,Our System support will contact with you to Complete Your data",
+            'message' => "Your Account Created Successfully ,Our System support will contact with you to Complete Your data",
             // 'data' => new DealersResource(User::find($user->id)),
             // 'token' => $token
         ]);
@@ -150,25 +150,23 @@ class RegisterController extends Controller
         if (!auth()->attempt($loginData)) {
             return response(['message' => 'Invalid Credentials phone Or Password']);
         }
-        if(auth()->user()->login == 0){
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        $user = User::where('id', auth()->user()->id)->first();
-        $user->update([
-            'login'=>1
-        ]);
-        return response([
-         'data' => new UsersResource(User::find($user->id)),
-         'token' => $accessToken]);
-        }
-        else
-        {
+        if (auth()->user()->login == 0) {
+            $accessToken = auth()->user()->createToken('authToken')->accessToken;
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->update([
+                'login' => 1
+            ]);
+            return response([
+                'data' => new UsersResource(User::find($user->id)),
+                'token' => $accessToken
+            ]);
+        } else {
             return response(['message' => 'you must logout from other devices']);
         }
-
     }
 
 
-      public function logoutApi(Request $request)
+    public function logoutApi(Request $request)
     {
 
         $loginData = $request->validate([
@@ -176,25 +174,24 @@ class RegisterController extends Controller
             'password' => 'required'
         ]);
 
-        $d=User::where('phone',$request->phone)->first();
+        $d = User::where('phone', $request->phone)->first();
 
 
         return $d->accessTokens();
 
 
         $accessToken = auth()->user()->accessTokens();
-        $token= $request->user()->tokens->find($accessToken);
+        $token = $request->user()->tokens->find($accessToken);
 
         $token->revoke();
         return response(['message' => 'You have been successfully logged out.'], 200);
 
         // $token=OauthAccessToken::where('user_id',$d->id)->get();
         return $s;
-
     }
 
 
-     public function dealer_login(Request $request)
+    public function dealer_login(Request $request)
     {
         $loginData = $request->validate([
             //'email' => 'required',
@@ -207,26 +204,25 @@ class RegisterController extends Controller
         }
 
         $user = User::where('id', auth()->user()->id)->where('approve', 1)->first();
-        if(auth()->user()->login==0){
-            if($user){
+        if (auth()->user()->login == 0) {
+            if ($user) {
                 $accessToken = auth()->user()->createToken('authToken')->accessToken;
-               $user-> update([
-                        'login'=>1
-                    ]);
-                return response([
-                'data' => new DealersResource(User::find($user->id)),
-                'token' => $accessToken]);
-            }else{
+                $user->update([
+                    'login' => 1
+                ]);
+                return response()->json([
+                    'data' => new DealersResource(User::find($user->id)),
+                    'token' => $accessToken
+                ]);
+            } else {
 
                 return response()->json([
-                'message' => 'your account not approved yet'
-                 ]);
-
+                    'message' => 'your account not approved yet'
+                ]);
             }
-        }else{
+        } else {
             return response(['message' => 'you must logout from other devices']);
         }
-
     }
 
 
@@ -243,8 +239,8 @@ class RegisterController extends Controller
                 'revoked' => true
             ]);
         $user->update([
-                'login' => 0
-            ]);
+            'login' => 0
+        ]);
         $accessToken->revoke();
         return response()->json([
             'message' => 'Successfully logged out'
@@ -262,7 +258,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback(Request $request , $provider)
+    public function handleProviderCallback(Request $request, $provider)
     {
         /// dd(request()->all());
 
@@ -273,28 +269,23 @@ class RegisterController extends Controller
 
 
 
-        if(!$user) {
+        if (!$user) {
             $user = User::create([
                 'email' => $request->email,
                 'email_verified_at' => Carbon::now()->toDateTimeString(),
                 'provider' => $provider,
                 'provider_id' => $request->provider_id,
-                'name'=> $request->name,
+                'name' => $request->name,
             ]);
 
             $token = $user->createToken('Laravel Password Grant Client')->accessToken;
             $response = ['token' => $token];
 
             return response()->json($response);
-
-
-
         }
         $accessToken = $user->createToken('Laravel Password Grant Client')->accessToken;
 
-        return response()->json(['user' =>$user, 'token' => $accessToken]);
-
-
+        return response()->json(['user' => $user, 'token' => $accessToken]);
     }
     public function profile()
 
@@ -305,137 +296,139 @@ class RegisterController extends Controller
         $token = request()->bearerToken();
 
 
-        if ( \Request::segment(2) =='api' ) {
+        if (\Request::segment(2) == 'api') {
 
             return response()->json([
-                'data'=>new UsersResource($user),
-                "token"=>$token
+                'data' => new UsersResource($user),
+                "token" => $token
             ]);
-
         } else {
-          return $user;
-
+            return $user;
         }
-
     }
 
 
     public function dealer_profile()
 
     {
+
         $authUser = auth('api')->user();
+
         $user = User::where('id', $authUser->id)->first();
-    $token = request()->bearerToken();
+        $token = request()->bearerToken();
+
         return response()->json([
-            'data'=>new DealersResource($user),
-            "token"=>$token
+            'data' => new DealersResource($user),
+            'token' => $token
         ]);
     }
 
 
-        public function single_user($id)
+    public function single_user($id)
     {
 
         $user = User::where('id', $id)->first();
 
         return response()->json([
-            'data'=>new UsersResource($user),
+            'data' => new UsersResource($user),
         ]);
     }
 
-        public function single_dealer($id)
+    public function single_dealer($id)
     {
 
         $user = User::where('id', $id)->first();
 
         return response()->json([
-            'data'=>new dealersResource($user),
+            'data' => new dealersResource($user),
         ]);
     }
 
 
-   public function update(Request $request){
-    $user = User::find(auth('api')->user()->id);
-    $authUser = auth('api')->user();
+    public function update(Request $request)
+    {
+        $user = User::find(auth('api')->user()->id);
+        $authUser = auth('api')->user();
 
-    $token = request()->bearerToken();
+        $token = request()->bearerToken();
 
 
-    if($user){
-    $v = Validator::make($request->all(), [
-            'name' => 'max:255',
-            'email' => 'email|unique:users,email,'.$authUser->id,
-            'phone' => 'unique:users,phone,'.$authUser->id,
-            'password' => ['min:8' ]
-       ]);
-       $errors = $v->errors();
-       if ($v->fails()) {
-           foreach ($errors->all() as $message) {
-               return response()->json($message);
-           }
-       }
-       $user = User::find(auth('api')->user()->id);
-       $imgs = $request->image;
-        if ($request->hasFile('image')) {
+        if ($user) {
+            $v = Validator::make($request->all(), [
+                'name' => 'max:255',
+                'email' => 'email|unique:users,email,' . $authUser->id,
+                'phone' => 'unique:users,phone,' . $authUser->id,
+                'password' => ['min:8']
+            ]);
+            $errors = $v->errors();
+            if ($v->fails()) {
+                foreach ($errors->all() as $message) {
+                    return response()->json($message);
+                }
+            }
+            $user = User::find(auth('api')->user()->id);
+            $imgs = $request->image;
+            if ($request->hasFile('image')) {
                 $fileName = '/users/apis/' . time() . $imgs->getClientOriginalName();
                 $imgs->move(public_path('../storage/app/public/users/apis/'), $fileName);
-             //   $fileName=url('/public/storage/'.$fileName);
-        }else{
-            $fileName=$user->avatar;
+                //   $fileName=url('/public/storage/'.$fileName);
+            } else {
+                $fileName = $user->avatar;
+            }
+
+            $user->update([
+                'name' => $request->name ? $request->name : $user->name,
+                'password' => isset($request->password) ? bcrypt($request->password) : $user->password,
+                'email' => $request->email ? $request->email : $user->email,
+                'phone' => $request->phone ? $request->phone : $user->phone,
+                'address' => $request->address ? $request->address : $user->address,
+                'point' => $request->point ? $request->point : $user->point,
+                'avatar' => $fileName,
+                'valid_to' => $request->valid_to ? $request->valid_to : "2000-1-1",
+                'provider' => $request->provider ? $request->provider : "",
+                'provider_id' => $request->provider_id ? $request->provider_id : "",
+                'email_verified_at' => now(),
+                "phone_verified" => $request->phone_verified ? $request->phone_verified : 0,
+            ]);
+            $result = User::where('id', $user->id)->first();
+            return response()->json([
+                "data" =>    new UsersResource($result),
+                "token" => $token
+
+            ]);
+        } else {
+            return response()->json(["message" => "this user is not found"]);
         }
+    }
 
-              $user->update([
-                    'name'=> $request->name?$request->name:$user->name,
-                    'password'=> isset($request->password)? bcrypt($request->password):$user->password,
-                    'email'=> $request->email?$request->email:$user->email,
-                    'phone'=> $request->phone?$request->phone:$user->phone,
-                    'address'=> $request->address?$request->address:$user->address,
-                    'point'=> $request->point?$request->point:$user->point,
-                    'avatar'=> $fileName,
-                    'valid_to'=> $request->valid_to?$request->valid_to:"2000-1-1",
-                    'provider'=> $request->provider?$request->provider:"",
-                    'provider_id'=> $request->provider_id?$request->provider_id:"",
-                    'email_verified_at'=> now(),
-                    "phone_verified"=>$request->phone_verified?$request->phone_verified:0,
-                 ]);
-        $result = User::where('id',$user->id)->first();
-        return response()->json([
-        "data"=>    new UsersResource($result),
-        "token"=>$token
-
-        ]);
-       }else{
-        return response()->json(["message"=>"this user is not found"]);
-       }
-
-   }
-
-   public function dealers(){
-       $dealers=User::where('type','dealer')->where('approve',1)->paginate(10);
-        if(isset($dealers)){
+    public function dealers()
+    {
+        $dealers = User::where('type', 'dealer')->where('approve', 1)->paginate(10);
+        if (isset($dealers)) {
             return  DealersResource::collection($dealers);
-        }else{
-             return response()->json(["message"=>"there is no dealer Yet"]);
+        } else {
+            return response()->json(["message" => "there is no dealer Yet"]);
         }
-   }
+    }
 
 
-  public function revoke(Request $request){
-       $loginData = $request->validate([
-             'phone' => 'required',
+    public function revoke(Request $request)
+    {
+        $loginData = $request->validate([
+            'phone' => 'required',
             'password' => 'required'
         ]);
 
-    $user=User::where('phone',$request->phone)->first();
+        $user = User::where('phone', $request->phone)->first();
 
 
-    $tokens=Token::where('user_id', $user->id)->get();
+        $tokens = Token::where('user_id', $user->id)->get();
 
-    foreach($tokens as $t){
-    $t->update(['revoked' => true]);
-    }
+        foreach ($tokens as $t) {
+            $t->update(['revoked' => true]);
+        }
 
-    $user->update(['login'=>0]);
+        $user->update(['login' => 0]);
 
 
 
@@ -450,124 +443,114 @@ class RegisterController extends Controller
             return response()->json(['message' => 'Invalid Credentials phone Or Password']);
         }
 
-            $accessToken = auth()->user()->createToken('authToken')->accessToken;
-            $user = User::where('id', auth()->user()->id)->first();
-            $user->update([
-                'login'=>1
-            ]);
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $user = User::where('id', auth()->user()->id)->first();
+        $user->update([
+            'login' => 1
+        ]);
         return response()->json([
-            "message"=>"You revoked tokens successfully ,and logged again",
+            "message" => "You revoked tokens successfully ,and logged again",
             'data' => new UsersResource($user),
             'token' => $accessToken
         ]);
+    }
 
 
-  }
+    public function revoke_social(Request $request)
+    {
+
+        if ($request->has('email') || $request->has('phone')) {
+            $user = User::where('email', $request->email)->orWhere('phone', $request->phone)->first();
 
 
-    public function revoke_social(Request $request){
-
-        if ($request->has('email')|| $request->has('phone')) {
-            $user = User::where('email', $request->email)->orWhere('phone',$request->phone)->first();
+            if ($user != Null) {
+                $tokens = Token::where('user_id', $user->id)->get();
 
 
-            if($user != Null){
-                $tokens=Token::where('user_id', $user->id)->get();
-
-
-                foreach($tokens as $t){
+                foreach ($tokens as $t) {
                     $t->update(['revoked' => true]);
                 }
 
 
-                $user->update(['login'=>0]);
+                $user->update(['login' => 0]);
 
 
-                if( $user->approve == 1){
+                if ($user->approve == 1) {
                     $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                     $user->update([
-                        'login'=>1
+                        'login' => 1
                     ]);
                     return response()->json([
-                        "data"=>new UsersResource($user),
+                        "data" => new UsersResource($user),
                         'token' => $token
-                        ]);
+                    ]);
                 }
-
-            }
-            else{
-                    return response()->json([
+            } else {
+                return response()->json([
                     'message' => 'your account not approved yet'
-                    ]);
-
+                ]);
             }
-        }elseif($request->provider_id != Null && $request->provider != Null ){
+        } elseif ($request->provider_id != Null && $request->provider != Null) {
 
-            $user=User::where('provider_id',$request->provider_id)->where('provider',$request->provider)->first();
+            $user = User::where('provider_id', $request->provider_id)->where('provider', $request->provider)->first();
             // dd($user );
-            if($user != Null){
-                $tokens=Token::where('user_id', $user->id)->get();
+            if ($user != Null) {
+                $tokens = Token::where('user_id', $user->id)->get();
 
 
-                foreach($tokens as $t){
+                foreach ($tokens as $t) {
                     $t->update(['revoked' => true]);
                 }
 
-                $user->update(['login'=>0]);
+                $user->update(['login' => 0]);
 
 
-                if( $user->approve == 1){
+                if ($user->approve == 1) {
                     $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                     $user->update([
-                        'login'=>1
+                        'login' => 1
                     ]);
                     return response()->json([
-                        "data"=>new UsersResource($user),
+                        "data" => new UsersResource($user),
                         'token' => $token
                     ]);
-                }
-
-                else{
-                        return response()->json([
+                } else {
+                    return response()->json([
                         'message' => 'your account not approved yet'
-                        ]);
-
-                    }
-            }else{
-                    return response()->json([
-                    'message' => 'No User founded'
                     ]);
                 }
-        }else{
-                    return response()->json([
-                    'message' => 'Yourrequest email or phone or provider_id not exists'
-                    ]);
-
+            } else {
+                return response()->json([
+                    'message' => 'No User founded'
+                ]);
             }
-
+        } else {
+            return response()->json([
+                'message' => 'Yourrequest email or phone or provider_id not exists'
+            ]);
+        }
     }
 
 
 
 
-  public function send_points (Request $request){
-    $authUser = auth('api')->user();
-    $sender_user =User::where('id',$authUser->id)->first();
-    $reciever_user =User::where('phone',$request->phone)->first();
-    if($sender_user->point >= $request->point){
-        $sender_user->update(['point'=>$sender_user->point-$request->point]);
-        $reciever_user->update(['point'=>$reciever_user->point+$request->point]);
-        return [
-            "sender_user"=>$sender_user->point,
-            "reciver_user"=>$reciever_user->point,
-            "transferd_points"=>$request->point
-        ];
-    }else{
-        return [
-            "message"=>"Your Point Balance less Than"." ".$request->point." point"
-        ];
+    public function send_points(Request $request)
+    {
+        $authUser = auth('api')->user();
+        $sender_user = User::where('id', $authUser->id)->first();
+        $reciever_user = User::where('phone', $request->phone)->first();
+        if ($sender_user->point >= $request->point) {
+            $sender_user->update(['point' => $sender_user->point - $request->point]);
+            $reciever_user->update(['point' => $reciever_user->point + $request->point]);
+            return [
+                "sender_user" => $sender_user->point,
+                "reciver_user" => $reciever_user->point,
+                "transferd_points" => $request->point
+            ];
+        } else {
+            return [
+                "message" => "Your Point Balance less Than" . " " . $request->point . " point"
+            ];
+        }
     }
-  }
-
-
 }

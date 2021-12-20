@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('public/dash/css/style.css')}}">
+<link rel="stylesheet" href="{{ asset('dash/css/style.css')}}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,18 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>original</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('public/dash/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('public/dash/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('dash/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('dash/css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('public/dash/css/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('public/dash/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('dash/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('dash/css/owl.carousel.min.css')}}">
 </head>
 
 <body class="landing" style="counter-reset: my-sec-counter;">
     <!-- *****************head***************** -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="{{ asset('public/dash/images/logo.png')}}" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="{{ asset('dash/images/logo.png')}}" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -56,16 +56,16 @@
     <div class="icons">
         <ul>
             <a href="#" target="_blank">
-                <li> <img src="{{ asset('public/dash/images/fb.png')}}" alt=""> </li>
+                <li> <img src="{{ asset('dash/images/fb.png')}}" alt=""> </li>
             </a>
             <a href="#" target="_blank">
-                <li> <img src="{{ asset('public/dash/images/tw.png')}}" alt=""> </li>
+                <li> <img src="{{ asset('dash/images/tw.png')}}" alt=""> </li>
             </a>
             <a href="#" target="_blank">
-                <li> <img src="{{ asset('public/dash/images/you.png')}}" alt=""></li>
+                <li> <img src="{{ asset('dash/images/you.png')}}" alt=""></li>
             </a>
             <a href="#" target="_blank">
-                <li> <img src="{{ asset('public/dash/images/ista.png')}}" alt=""></li>
+                <li> <img src="{{ asset('dash/images/ista.png')}}" alt=""></li>
             </a>
         </ul>
     </div>
@@ -92,18 +92,18 @@
                                         الأصلية من الوكلاء بأفضل الأسعار،
                                         وتوصيلها الى مكانك قم بتحميل التطبيق الآن</p>
                                     <div>
-                                        <a href=""><img src="{{ asset('public/dash/images/carsou-apple.png')}}"
+                                        <a href=""><img src="{{ asset('dash/images/carsou-apple.png')}}"
                                                 alt=""></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/carous-play.png')}}"
+                                        <a href=""><img src="{{ asset('dash/images/carous-play.png')}}"
                                                 alt=""></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/play.png')}}" width="75"
+                                        <a href=""><img src="{{ asset('dash/images/play.png')}}" width="75"
                                                 alt=""></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="caro-img">
-                                    <img src="{{ asset('public/dash/images/carous-sec-img.png')}}" width="100%" alt="">
+                                    <img src="{{ asset('dash/images/carous-sec-img.png')}}" width="100%" alt="">
                                 </div>
                             </div>
                         </div>
@@ -119,18 +119,18 @@
                                         وتوصيلها الى مكانك قم بتحميل التطبيق الآن</p>
                                     <div>
                                         <a href=""><a href=""><img
-                                                    src="{{ asset('public/dash/images/carsou-apple.png')}}"
+                                                    src="{{ asset('dash/images/carsou-apple.png')}}"
                                                     alt=""></a></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/carous-play.png')}}"
+                                        <a href=""><img src="{{ asset('dash/images/carous-play.png')}}"
                                                 alt=""></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/play.png')}}" width="75"
+                                        <a href=""><img src="{{ asset('dash/images/play.png')}}" width="75"
                                                 alt=""></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="caro-img">
-                                    <img src="{{ asset('public/dash/images/carous-sec-img.png')}}" width="100%" alt="">
+                                    <img src="{{ asset('dash/images/carous-sec-img.png')}}" width="100%" alt="">
                                 </div>
                             </div>
                         </div>
@@ -145,18 +145,18 @@
                                         الأصلية من الوكلاء بأفضل الأسعار،
                                         وتوصيلها الى مكانك قم بتحميل التطبيق الآن</p>
                                     <div>
-                                        <a href=""><img src="{{ asset('public/dash/images/carsou-apple.png')}}"
+                                        <a href=""><img src="{{ asset('dash/images/carsou-apple.png')}}"
                                                 alt=""></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/carous-play.png')}}"
+                                        <a href=""><img src="{{ asset('dash/images/carous-play.png')}}"
                                                 alt=""></a>
-                                        <a href=""><img src="{{ asset('public/dash/images/play.png')}}" width="75"
+                                        <a href=""><img src="{{ asset('dash/images/play.png')}}" width="75"
                                                 alt=""></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="caro-img">
-                                    <img src="{{ asset('public/dash/images/carous-sec-img.png')}}" width="100%" alt="">
+                                    <img src="{{ asset('dash/images/carous-sec-img.png')}}" width="100%" alt="">
                                 </div>
                             </div>
                         </div>
@@ -175,31 +175,31 @@
             </div>
             <div class="owl-carousel owl-theme" style="direction: ltr;">
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
                 <div class="item">
-                    <img src="{{ asset('public/dash/images/partners-landign-logo.png')}}">
+                    <img src="{{ asset('dash/images/partners-landign-logo.png')}}">
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="st-img">
-                        <img src="{{ asset('public/dash/images/s1.png')}}" alt="">
+                        <img src="{{ asset('dash/images/s1.png')}}" alt="">
                     </div>
                     <div class="st-des">
                         <h6>قم بانشاء حساب</h6>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="st-img">
-                        <img src="{{ asset('public/dash/images/s2.png')}}" alt="">
+                        <img src="{{ asset('dash/images/s2.png')}}" alt="">
                     </div>
                     <div class="st-des">
                         <h6>تصفح المنتجات</h6>
@@ -236,7 +236,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="st-img">
-                        <img src="{{ asset('public/dash/images/s3.png')}}" alt="">
+                        <img src="{{ asset('dash/images/s3.png')}}" alt="">
                     </div>
                     <div class="st-des">
                         <h6>أختار القطعة المطلوبة</h6>
@@ -246,7 +246,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="st-img">
-                        <img src="{{ asset('public/dash/images/s4.png')}}" alt="">
+                        <img src="{{ asset('dash/images/s4.png')}}" alt="">
                     </div>
                     <div class="st-des">
                         <h6>قم بالدفع </h6>
@@ -262,7 +262,7 @@
         <br>
         <div class="video-co">
             <div class="play-video">
-                <img src="{{ asset('public/dash/images/play.png')}}" alt="">
+                <img src="{{ asset('dash/images/play.png')}}" alt="">
             </div>
         </div>
     </div>
@@ -279,7 +279,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <img src="{{ asset('public/dash/images/fe-1.png')}}" width="80px" height="80px">
+                                    <img src="{{ asset('dash/images/fe-1.png')}}" width="80px" height="80px">
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -293,7 +293,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <img src="{{ asset('public/dash/images/fe-2.png')}}">
+                                    <img src="{{ asset('dash/images/fe-2.png')}}">
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -307,7 +307,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <img src="{{ asset('public/dash/images/fe-3.png')}}">
+                                    <img src="{{ asset('dash/images/fe-3.png')}}">
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -321,7 +321,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <img src="{{ asset('public/dash/images/fe-4.png')}}">
+                                    <img src="{{ asset('dash/images/fe-4.png')}}">
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -336,7 +336,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="hint-img-hide">
-                        <img src="{{ asset('public/dash/images/side-landing.png')}}" alt="">
+                        <img src="{{ asset('dash/images/side-landing.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -353,8 +353,8 @@
                     الأصلية من الوكلاء بأفضل الأسعار،
                     وتوصيلها الى مكانك قم بتحميل التطبيق الآن</p>
                 <div>
-                    <a href=""><img src="{{ asset('public/dash/images/apple-store-landing.png')}}" alt=""></a>
-                    <a href=""><img src="{{ asset('public/dash/images/play-stor-landing.png')}}" alt=""></a>
+                    <a href=""><img src="{{ asset('dash/images/apple-store-landing.png')}}" alt=""></a>
+                    <a href=""><img src="{{ asset('dash/images/play-stor-landing.png')}}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -449,7 +449,7 @@
             </div>
             <div>
                 <input type="text" placeholder="أكتب بريدك الالكتروني هنا ...">
-                <button> أرسل <img src="{{ asset('public/dash/images/send-ic.png')}}" alt=""> </button>
+                <button> أرسل <img src="{{ asset('dash/images/send-ic.png')}}" alt=""> </button>
             </div>
         </div>
     </div>
@@ -471,20 +471,20 @@
                 </div>
                 <div class="col-md-4">
                     <div class="social-landing">
-                        <img src="{{ asset('public/dash/images/social-1.png')}}" alt="">
-                        <img src="{{ asset('public/dash/images/social-2.png')}}" alt="">
-                        <img src="{{ asset('public/dash/images/social-3.png')}}" alt="">
-                        <img src="{{ asset('public/dash/images/social-4.png')}}" alt="">
+                        <img src="{{ asset('dash/images/social-1.png')}}" alt="">
+                        <img src="{{ asset('dash/images/social-2.png')}}" alt="">
+                        <img src="{{ asset('dash/images/social-3.png')}}" alt="">
+                        <img src="{{ asset('dash/images/social-4.png')}}" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('public/dash/js/jquiry.js')}}"></script>
+    <script src="{{ asset('dash/js/jquiry.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('public/dash/js/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('public/dash/js/main.js')}}"></script>
+    <script src="{{ asset('dash/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('dash/js/main.js')}}"></script>
     <script>
 
     </script>
