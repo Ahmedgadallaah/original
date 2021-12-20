@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="logo-log-side">
-                        <img src="{{ asset('public/dash/images/logo.png') }}">
+                        <img src="{{ asset('dash/images/logo.png') }}">
                     </div>
                     <div class="fields-login-side">
                         <div class="upp-login">
@@ -83,17 +83,17 @@
                                 <ul>
                                     <a href="">
                                         <li>
-                                            <img src="{{ asset('public/dash/images/facebook-ic.png') }}" alt="">
+                                            <img src="{{ asset('dash/images/facebook-ic.png') }}" alt="">
                                         </li>
                                     </a>
                                     <a href="">
                                         <li>
-                                            <img src="{{ asset('public/dash/images/twitter-ic.png') }}" alt="">
+                                            <img src="{{ asset('dash/images/twitter-ic.png') }}" alt="">
                                         </li>
                                     </a>
                                     <a href="">
                                         <li>
-                                            <img src="{{ asset('public/dash/images/google-ic.png') }}" alt="">
+                                            <img src="{{ asset('dash/images/google-ic.png') }}" alt="">
                                         </li>
                                     </a>
                                 </ul>
@@ -106,7 +106,7 @@
                 <div class="col-md-7">
                     <div class="car-login-side">
                         <div class="car-primary-img-login">
-                            <img src="{{ asset('public/dash/images/hold-mob.png') }}">
+                            <img src="{{ asset('dash/images/hold-mob.png') }}">
                             <div class="caro-txt">
                                 <h6>أهلا وسهلا بك</h6>
                                 <p>مع خدمة البحث يمكنك إيجاد ما ترغب به</p>
