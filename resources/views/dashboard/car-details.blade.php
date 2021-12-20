@@ -45,8 +45,10 @@
                                     <h6>أنواع السيارات</h6>
                                     <p style="width: 80%;">أختيارك لانواع السيارات التي تعمل بها يسهل الوصول لمنتجاتك
                                         ويزيد من أرباحك </p>
-                                    <div class="parts-sec-all products-parts-sec-all">
-                                        @foreach($data['data'] as $car)
+
+                                        <div class="parts-sec-all products-parts-sec-all">
+
+                                            @foreach($data as $car)
                                         <div class="parts-contect-sec">
                                             <div class="row">
                                                 <div class="col-md-8">
@@ -59,8 +61,7 @@
                                                         <div class="col-md-8">
                                                             <div class="prod-txts-parts">
 
-                                                                <h6>الماركة : {{
-                                                                    $car['mark']->getTranslatedAttribute('name') }}
+                                                                <h6>الماركة : {{ $car['mark']->getTranslatedAttribute('name') }}
                                                                     السنة :{{ $car['year']['year'] }} <br> المحرك : {{
                                                                     $car['engine']->getTranslatedAttribute('name') }}
                                                                 </h6>

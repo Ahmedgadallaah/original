@@ -163,7 +163,7 @@ class CarsController extends Controller
 
     public function years(){
         $years=Year::all();
-        return response()->json(["data"=>YearsResource::collection($years)]); 
+        return response()->json(["data"=>YearsResource::collection($years)]);
     }
 
     public function dealer_store_car(Request $request)
@@ -257,7 +257,7 @@ class CarsController extends Controller
                     "status" => "true",
                     'data' => new CarsResource ($car)
                 ]);
-            
+
         }
 
 
@@ -362,7 +362,7 @@ class CarsController extends Controller
         }
 
     }
- 
+
     public function Dealer_cars()
     {
         if(auth()->user()){
@@ -379,14 +379,14 @@ class CarsController extends Controller
                 return response()->json([
                     "message" => "you didn't select your car yet",
                     "status" => "false",
-                    // 'data' => $car
+                     'data' => []
                 ]);
             }
         }else{
             return response()->json([
                 'message' => 'sorry you are Not Auth',
                 "status"=>false,
-            
+
             ]);
         }
 
@@ -398,7 +398,7 @@ class CarsController extends Controller
          $car = Car::where('id', $car_id)->where('user_id', $user)->first();
 
          if($car){
-            
+
             $car->delete();
              return response()->json([
                 "message" => "your car data has been succsessfully deleted",

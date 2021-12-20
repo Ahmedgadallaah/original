@@ -9,12 +9,12 @@ use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\CarsController;
 class SettingController extends Controller
 {
-    
+
 
         public function settings() {
             $user = new RegisterController();
             $userProfile = $user->profile();
-            
+
              return view('dashboard.settings')->with(['profile'=>$userProfile]);
         }
 
@@ -22,7 +22,7 @@ class SettingController extends Controller
             $shop = new ShopsController();
             $store = $shop->Shop_By_Dealer();
             $data= $store->getData()->data;
-            
+
             if(!empty($data)){
                 return view('dashboard.store-details')->with(['store'=>$data]);
             }else{
@@ -31,20 +31,30 @@ class SettingController extends Controller
         }
 
         public function dealer_cars(){
-              $car = new CarsController();
-              $car = $car->dealer_cars();
 
-              
-             $status= $car->getData()->status;
-             if($status){
-             $locale= app()->getLocale();
+            $car = new CarsController();
+            $car = $car->dealer_cars();
+
+            $data= $car->getData()->data;
+            if(!empty($data)){
              $data= $car->getOriginalContent();
-            //   return $data;
-            return view('dashboard.car-details')->with(['data'=>$data,'locale'=>$locale]);
-             }else{
+
+             return view('dashboard.car-details')->with(['data'=>$data]);
+              }else{
+
                  return redirect()->back();
              }
-           
+
+        }
+
+        public function add_car(){
+            return view('dashboard.add-car');
+        }
+        public function edit_profile(){
+            return view('dashboard.edit-profile');
+        }
+        public function add_store(){
+            return view('dashboard.add-update-store');
         }
 
 }

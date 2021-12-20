@@ -52,6 +52,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/store-details',[App\Http\Controllers\dashboard\SettingController::class, 'store_details'])->name('store-details');
     Route::get('/dealer-cars',[App\Http\Controllers\dashboard\SettingController::class, 'dealer_cars'])->name('dealer-cars');
 
+    //gad
+    Route::get('/add-car',[App\Http\Controllers\dashboard\SettingController::class, 'add_car'])->name('add-car');
+    Route::get('/edit-profile',[App\Http\Controllers\dashboard\SettingController::class, 'edit_profile'])->name('edit-profile');
+    Route::get('/add-store',[App\Http\Controllers\dashboard\SettingController::class, 'add_store'])->name('add-store');
+
 
 });
 
