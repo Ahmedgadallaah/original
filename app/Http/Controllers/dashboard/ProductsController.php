@@ -18,7 +18,6 @@ class ProductsController extends Controller
         $dealer = new DealerController;
         $dealerData = $dealer->home();
 
-
         //  parts
         $partsData = new PartsController();
         $parts = $partsData->dealer_pending_parts();
