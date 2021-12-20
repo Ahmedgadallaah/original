@@ -9,7 +9,7 @@ class Part extends Model
 {
     //use Spatial;
 
-    // protected $spatial = ['address'];
+    protected $appneds = ['main_image'];
     protected $fillable = ['name','image','quantity','comment','user_id','address','status','mark_id','car_model_id','engine_id','year_id'];
 
     public function user(){
@@ -36,5 +36,14 @@ class Part extends Model
 
     public function prices(){
         return $this->hasMany(PartPrice::class,'part_id');
+    }
+
+    public function getMainImageAttribute()
+    {
+        if ($this->image) {
+            $images = json_decode($this->image);
+            return $images[0] ?? null;
+        }
+        return [];
     }
 }
