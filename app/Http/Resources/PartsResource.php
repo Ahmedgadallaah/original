@@ -21,7 +21,7 @@ class PartsResource extends JsonResource
         $images = [];
         if($image){
             foreach ($image as $img){
-                array_push($images , url('/public/storage/'.$img));
+                array_push($images , url('storage/'.$img));
             }
         }
             return [

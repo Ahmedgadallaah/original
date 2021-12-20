@@ -27,17 +27,20 @@
                                     <div class="col-md-3">
                                         <div class="thre-sec">
                                             <div>
-                                                <h6>إجمالي ربح اليوم : {{ $home->day_earning }}</h6>
+                                                       {{-- @dd($home) --}}
+                                                <h6>إجمالي ربح اليوم : {{ $home['day_earning'] }}</h6>
                                             </div>
+
+
                                             <div>
                                                 <h6>إجمالي مبيعات اليوم</h6>
-                                                <p><b><strong>{{ $home->day_sold_parts }}</strong> </b> قطعة</p>
+                                                <p><b><strong>{{ $home['day_sold_parts'] }}</strong> </b> قطعة</p>
                                             </div>
 
 
                                             <div>
                                                 <h6>تقييم العملاء</h6>
-                                                {{ $home->total_rating }}
+                                                {{ $home['total_rating'] }}
                                                 <img src="{{ asset('dash/images/star.png') }}" alt="">
 
 
@@ -51,7 +54,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h6><b><Strong>{{ $home->last_week_earning }}</Strong></b> ج.م</h6>
+                                                    <h6><b><Strong>{{ $home['last_week_earning'] }}</Strong></b> ج.م</h6>
                                                     <span><small
                                                             style="font-size: 10px; display: block; margin-top: -10px;">إجمالي
                                                             ربح الأسبوع الماضي</small>
@@ -68,7 +71,7 @@
                                                                         type="button" id="dropdownMenuButton1"
                                                                         data-bs-toggle="dropdown" aria-expanded="false"
                                                                         style="background-color: rgba(118,185,82,.2); border: none; color: #76B952;">
-                                                                        {{ $home->total_percentage }}
+                                                                        {{ $home['total_percentage'] }}
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -80,7 +83,7 @@
                                                                         type="button" id="dropdownMenuButton1"
                                                                         data-bs-toggle="dropdown" aria-expanded="false"
                                                                         style="background-color: rgba(118,185,82,.2); border: none; color: #76B952;">
-                                                                        {{ $home->weekly_rate }}
+                                                                        {{ $home['weekly_rate'] }}
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -118,11 +121,14 @@
                                                         <div class="col-md-9">
                                                             <div class="row">
                                                                 <div class="col-md-4">
+
                                                                     <div class="prod-img-parts">
-                                                                        <img src="{{ $part->image[0] }}" width="100%">
+                                                                        @if ($part->image)
+                                                                           <img src="{{ $part->image[0] }}" width="100%">
+                                                                        @endif
                                                                     </div>
                                                                 </div>
-                                                                {{-- @dd($part) --}}
+
                                                                 <div class="col-md-8">
                                                                     <div class="prod-txts-parts">
                                                                         <h6>{{ $part->name }}</h6>
