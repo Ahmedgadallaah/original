@@ -9,28 +9,7 @@
                     <!-- ****************************** Middle-All ****************************** -->
                     <div class="col-md-8">
                           <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                              <div class="account-details-column">
-                                <h6>تفاصيل الحساب</h6>
-                                <ul>
-                                  <a href="accountDetails.html">
-                                    <li><i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                  </a>
-                                  <a href="storeDetails.html">
-                                    <li><i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                  </a>
-                                  <a href="Message.html" class="active">
-                                    <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                  </a>
-                                  <a href="">
-                                    <li><i class="fas fa-headset"></i> الدعم الفني </li>
-                                  </a>
-                                  <a href="">
-                                    <li><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                  </a>
-                                </ul>
-                              </div>
-                            </div>
+                            @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="add-product-title">
                                     <h6><a href="Message.html"><img src="images/back-ic.png" width="25" alt=""></a> الرجوع أنواع السيارات </h6>
@@ -39,49 +18,57 @@
 
                                     <h6>أضافة سيارة جديده</h6>
                                     <br>
+                                    <form action="{{route('store-car')}}" method="post" >
                                     <div class="form-grid">
-                                        <form action="" type=""></form>
+
                                         @csrf
                                         <label for=""><small>ماركة السيارة</small></label>
-                                        <select name="" id="slick">
-                                          <!-- <option value="0"> ماركة السيارة </option> -->
-                                          <option value="1" data-description='' data-imagesrc="images/car-type.png"> تويوتا </option>
+                                        <select name="mark_id" id="slick" required>
+                                          @foreach ($marks as $mark )
+
+
+                                          <option value="{{$mark->id}}" data-description='' style="color:#000;" > {{$mark->name}} </option>
+                                          @endforeach
                                           <option value="1" data-description='' data-imagesrc="images/car-type.png"> تويوتا </option>
                                       </select>
                                       <style>
-                                        .dd-selected{
-                                          color: black;
-                                          font-weight: normal;
-                                          font-size: 14px;
-                                        }
+
                                       </style>
 
                                     </div>
+
                                     <div class="form-grid">
                                         <label for=""><small>فئة السيارة</small></label>
-                                        <select name="" id="">
-                                            <option value="">كتب النص هنا</option>
+                                        <select name="model_id" id="" required>
+                                            @foreach ($models as $model )
+                                                <option value="{{$model->id}}" data-description='' style="color:#000;" > {{$model->name}} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>نوع المحرك</small></label>
-                                        <select name="" id="">
-                                            <option value="">كتب النص هنا</option>
+                                        <select name="engine_id" id="" required>
+                                        @foreach ($engines as $engine )
+                                                <option value="{{$engine->id}}" data-description='' style="color:#000;" > {{$engine->name}} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>سنة التصنيع</small></label>
-                                        <select name="" id="">
-                                            <option value="">كتب النص هنا</option>
+                                        <select name="year_id" id="" required>
+                                            @foreach ($years as $year )
+                                                <option value="{{$year->id}}" data-description='' style="color:#000;" > {{$year->year}} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button class="btn btn-primaryC">
-                                                <a href="Message.html">إضف السيارة</a>
+                                            <button class="btn btn-primaryC" type="submit">
+                                                إضف السيارة
                                             </button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                           </div>

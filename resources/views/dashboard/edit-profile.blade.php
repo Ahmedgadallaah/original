@@ -9,28 +9,7 @@
                     <!-- ****************************** Middle-All ****************************** -->
                      <div class="col-md-8">
                           <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                              <div class="account-details-column">
-                                <h6>تفاصيل الحساب</h6>
-                                <ul>
-                                  <a href="accountDetails.html" class="active">
-                                    <li> <i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                  </a>
-                                  <a href="storeDetails.html">
-                                    <li> <i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                  </a>
-                                  <a href="Message.html">
-                                    <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                  </a>
-                                  <a href="">
-                                    <li> <i class="fas fa-headset"></i> الدعم الفني </li>
-                                  </a>
-                                  <a href="">
-                                    <li> <i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                  </a>
-                                </ul>
-                              </div>
-                            </div>
+                            @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="add-product-title">
                                     <h6> <a href="accountDetails.html"> <img src="images/back-ic.png" width="25" alt=""></a> الرجوع لتفاصيل الحساب </h6>
@@ -38,7 +17,9 @@
                                 <div class="form-add-finial add-car-screen">
                                     <h6> تعديل الحساب </h6>
                                     <br>
-                                    <div class="text-center">
+                                   <form action="{{route('update-profile')}}" method="post" >
+                                    @csrf
+                                    {{-- <div class="text-center">
                                         <div class="upload" upload-image="" style="border-radius: 10px; background: #fff;">
                                             <input type="file" id="files" name="files" class="input-file ng-pristine ng-valid ng-touched" files-model="" ng-model="project.fileList">
                                            <label for="files" style="border: none">
@@ -50,33 +31,34 @@
                                            </label>
                                        </div>
                                     </div>
-                                   <br>
+                                   <br>--}}
+
                                     <div class="form-grid">
                                         <label for=""><small>اسم المستخدم</small></label>
-                                        <input type="text" class="from-control" placeholder="أكتب النص هنا">
+                                        <input name="name" value="{{$user->name}}" type="text" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>رقم الهاتف</small></label>
-                                        <input type="number" class="from-control" placeholder="أكتب النص هنا">
+                                        <input value="{{$user->phone}}" name="phone" type="number" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>البريد اللالكتروني</small></label>
-                                        <input type="email" class="from-control" placeholder="أكتب النص هنا">
+                                        <input value="{{$user->email}}" name="email" type="email" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>كلمة المرور</small></label>
-                                        <input type="text" class="from-control" placeholder="أكتب النص هنا">
+                                        <input name="password" type="password" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>العنوان</small></label>
-                                        <input type="text" class="from-control" placeholder="أكتب النص هنا">
+                                        <input  value="{{$user->address}}"name="address" type="text" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="details-sub">
-                                        <button class="btn btn-primaryC" style="width: 100%;">
-                                          <a href="accountDetails.html"> حفظ البيانات </a>
-                                        </button>
+                                        <button type="submit" class="btn btn-primaryC" style="width: 100%;">حفظ البيانات </button>
                                       </div>
-                                </div>
+                                      </form>
+                                    </div>
+
                             </div>
                           </div>
                         </div>

@@ -10,28 +10,7 @@
                     <!-- ****************************** Middle-All ****************************** -->
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                                <div class="account-details-column" style="height: 100%;">
-                                    <h6>تفاصيل الحساب</h6>
-                                    <ul>
-                                        <a href="accountDetails.html">
-                                            <li><i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                        </a>
-                                        <a href="storeDetails.html" class="active">
-                                            <li><i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                        </a>
-                                        <a href="Message.html">
-                                            <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> الدعم الفني </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
+                           @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="bannner-apps">
                                     <div class="apps-show-banner">
@@ -48,12 +27,12 @@
                                         <div class="info-details">
                                             <div class="details-sub">
                                                 <span>اسم المتجر</span>
-                                                @if($store)
+
                                                 <h6>{{$store->name}}</h6>
                                             </div>
                                             <div class="details-sub">
                                                 <span>رقم التيلفون</span>
-                                                <h6>+2000021554625</h6>
+                                                <h6>+{{$store->phone}}</h6>
                                             </div>
                                             <div class="details-sub">
                                                 <span>التصنيف</span>
@@ -61,15 +40,15 @@
                                             </div>
                                             <div class="details-sub">
                                                 <span>العنوان</span>
-                                                <h6>القاهرة التوفيقية</h6>
+                                                <h6>{{$store->address}}</h6>
                                             </div>
                                             <div class="details-sub">
-                                                <button class="btn btn-primaryC" style="width: 100%;">
-                                                    <a href="edit-store-details.html"> تعديل </a>
-                                                </button>
+
+                                                    <a href="{{route('edit-store')}}"><button class="btn btn-primaryC" style="width: 100%;"> تعديل </button></a>
+
                                             </div>
                                         </div>
-                                        <h6>أنواع السيارات</h6>
+                                        {{-- <h6>أنواع السيارات</h6>
                                         <div class="parts-sec-all products-parts-sec-all">
                                             <div class="parts-contect-sec">
                                                 <div class="row">
@@ -123,7 +102,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>

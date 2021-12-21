@@ -9,52 +9,34 @@
                     <!-- ****************************** Middle-All ****************************** -->
                    <div class="col-md-8">
                           <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                              <div class="account-details-column" style="height: 100%;">
-                                <h6>تفاصيل الحساب</h6>
-                                <ul>
-                                  <a href="accountDetails.html">
-                                    <li><i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                  </a>
-                                  <a href="storeDetails.html" class="active">
-                                    <li><i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                  </a>
-                                  <a href="Message.html">
-                                    <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                  </a>
-                                  <a href="">
-                                    <li><i class="fas fa-headset"></i> الدعم الفني </li>
-                                  </a>
-                                  <a href="">
-                                    <li><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                  </a>
-                                </ul>
-                              </div>
-                            </div>
+                            @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="form-add-finial add-car-screen">
                                     <h6> تفاصيل المتجر </h6>
                                    <br>
+                                   <form action="{{route('update-store')}}" method="POST">
+                                       @csrf
                                     <div class="form-grid">
                                         <label for=""><small>اسم المتجر</small></label>
-                                        <input type="text" class="from-control" placeholder="أكتب النص هنا">
+                                        <input value="{{$store->name}}" name="name" type="text" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>العنوان</small></label>
-                                        <input type="text" class="from-control" placeholder="أكتب النص هنا">
+                                        <input value="{{$store->address}}" name="address" type="text" class="from-control" placeholder="أكتب النص هنا">
                                     </div>
-                                    <div class="form-grid">
+                                    {{-- <div class="form-grid">
                                         <label for=""><small>التصنيف</small></label>
                                         <select name="" id="" style="color: black;">
                                             <option value=""> اكتب النص هنا</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="details-sub">
                                         <br>
-                                        <button class="btn btn-primaryC" style="width: 100%;">
-                                          <a href="storeDetails.html"> حفظ البيانات </a>
+                                        <button type="submit" class="btn btn-primaryC" style="width: 100%;">
+                                           حفظ البيانات
                                         </button>
                                       </div>
+                                      </form>
                                 </div>
                             </div>
                           </div>

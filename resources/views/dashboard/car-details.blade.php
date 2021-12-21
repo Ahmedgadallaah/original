@@ -9,28 +9,7 @@
                     <!-- ****************************** Middle-All ****************************** -->
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                                <div class="account-details-column">
-                                    <h6>تفاصيل الحساب</h6>
-                                    <ul>
-                                        <a href="accountDetails.html">
-                                            <li><i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                        </a>
-                                        <a href="storeDetails.html">
-                                            <li><i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                        </a>
-                                        <a href="Message.html" class="active">
-                                            <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> الدعم الفني </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
+                            @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="bannner-apps">
                                     <div class="apps-show-banner">
@@ -48,20 +27,21 @@
 
                                         <div class="parts-sec-all products-parts-sec-all">
 
-                                            @foreach($data as $car)
+                                            @foreach($data as $key => $car)
+
                                         <div class="parts-contect-sec">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="prod-img-parts">
-                                                                <img src="" width="100%" style="border: 0;">
+                                                                <img  src="{{  Storage::disk('public')->url($car->mark->image) }}" width="100%" style="border: 0;">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="prod-txts-parts">
 
-                                                                <h6>الماركة : {{ $car['mark']->getTranslatedAttribute('name') }}
+                                                                <h6>الماركة : {{ $car->mark->getTranslatedAttribute('name') }}
                                                                     السنة :{{ $car['year']['year'] }} <br> المحرك : {{
                                                                     $car['engine']->getTranslatedAttribute('name') }}
                                                                 </h6>
@@ -72,9 +52,12 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div style="text-align: left; padding-top: 7px;">
-                                                        <a href=""><img
-                                                                src="{{  Storage::disk('public')->url($car['mark']['image']) }}"
-                                                                width="25"></a>
+                                                        <form action="{{route('delete-car')}}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" value="{{$car->id}}" name="id">
+                                                        <button type="submit" style="text-decoration: none;color:#ee504f; border-radius:50%;background-color:#fff;border:2px solid #ee504f"><strong>-</strong></button>
+                                                        </form>
+
                                                     </div>
 
                                                 </div>
@@ -84,7 +67,7 @@
 
 
                                         <div class="add-car">
-                                            <a href="add-car.html"> <button class="form-control"> <i
+                                            <a href="{{route('add-car')}}"> <button class="form-control"> <i
                                                         class="fas fa-plus"></i> أضافة سيارة </button></a>
                                         </div>
                                     </div>
