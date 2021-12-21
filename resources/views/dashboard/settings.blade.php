@@ -1,29 +1,7 @@
 @extends('dashboard.layouts.app')
 @section('content')
 <div class="content-all">
-    <div class="fixed-menu">
-        <i class="fas fa-angle-left"></i>
-        <div class="fixed-menu-padd">
-            <ul>
-                <li><a href="home.html"><i class="fas fa-home"></i> الرئيسية</a></li>
-                <li class="liactive"><a href="Message.html"><i class="fas fa-comment-alt"></i> الرسايل</a></li>
-                <li><a href="Products.html"><i class="fas fa-sign-out-alt"></i> منتجاتي</a></li>
-                <li><a href="buyRequests.html"><i class="fas fa-sign-out-alt"></i> طلبات الشراء</a></li>
-                <li><a href="my-Sales.html"><i class="fas fa-sign-out-alt"></i> مبيعاتي</a></li>
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i> طلبات القطع</a></li>
-                <li><a href="setting.html"><i class="fas fa-cog"></i> الأعدادات</a></li>
-                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</a></li>
-            </ul>
-        </div>
-        <div class="right-side in-fixed-menu">
-            <div class="bg-tarqia side-problem">
-                <h6>هل تواجه مشكلة ؟</h6>
-                <p>إذا واجهتك مشكلة فيسعدنا تواصلك
-                    معانا من خلال هذا الرابط </p>
-                <button><a href="">تواصل معانا</a></button>
-            </div>
-        </div>
-    </div>
+    <@include('dashboard.includes.side-menu')
 
     <div class="content-inner">
         <div class="row">
@@ -32,28 +10,7 @@
                     <!-- ****************************** Middle-All ****************************** -->
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-4" style="padding: 0;">
-                                <div class="account-details-column">
-                                    <h6>تفاصيل الحساب</h6>
-                                    <ul>
-                                        <a href="" class="active">
-                                            <li><i class="fas fa-user"></i> تفاصيل الحساب </li>
-                                        </a>
-                                        <a href="storeDetails.html">
-                                            <li><i class="fas fa-store"></i> تفاصيل المتجر </li>
-                                        </a>
-                                        <a href="Message.html">
-                                            <li> <i class="fas fa-car"></i> تفاصيل السيارات </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> الدعم الفني </li>
-                                        </a>
-                                        <a href="">
-                                            <li><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
+                            @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
                                 <div class="bannner-apps">
                                     <div class="apps-show-banner">
@@ -90,7 +47,7 @@
                                             </div>
                                             <div class="details-sub">
                                                 <button class="btn btn-primaryC" style="width: 100%;">
-                                                    <a href="edit-account.html"> تعديل الحساب </a>
+                                                    <a href="{{route('edit-profile')}}"> تعديل الحساب </a>
                                                 </button>
                                             </div>
                                         </div>

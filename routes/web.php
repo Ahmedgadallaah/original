@@ -48,14 +48,22 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dealer-dashboard',[App\Http\Controllers\dashboard\ProductsController::class, 'index'])->name('index');
-    Route::get('/settings',[App\Http\Controllers\dashboard\SettingController::class, 'settings'])->name('settings');
-    Route::get('/store-details',[App\Http\Controllers\dashboard\SettingController::class, 'store_details'])->name('store-details');
-    Route::get('/dealer-cars',[App\Http\Controllers\dashboard\SettingController::class, 'dealer_cars'])->name('dealer-cars');
+
 
     //gad
+
+    Route::get('/dealer-cars',[App\Http\Controllers\dashboard\SettingController::class, 'dealer_cars'])->name('dealer-cars');
     Route::get('/add-car',[App\Http\Controllers\dashboard\SettingController::class, 'add_car'])->name('add-car');
-    Route::get('/edit-profile',[App\Http\Controllers\dashboard\SettingController::class, 'edit_profile'])->name('edit-profile');
-    Route::get('/add-store',[App\Http\Controllers\dashboard\SettingController::class, 'add_store'])->name('add-store');
+    Route::post('/store-car',[App\Http\Controllers\dashboard\SettingController::class, 'store_car'])->name('store-car');
+    Route::post('/delete-car',[App\Http\Controllers\dashboard\SettingController::class, 'delete_car'])->name('delete-car');
+
+    Route::get('/settings',[App\Http\Controllers\dashboard\SettingController::class, 'settings'])->name('settings');
+    Route::post('/update-profile',[App\Http\Controllers\dashboard\SettingController::class, 'update_profile'])->name('update-profile');
+    Route::get('/edit-profile',[App\Http\Controllers\dashboard\SettingController::class,  'edit_profile'])->name('edit-profile');
+    Route::get('/store-details',[App\Http\Controllers\dashboard\SettingController::class, 'store_details'])->name('store-details');
+    Route::get('/edit-store',[App\Http\Controllers\dashboard\SettingController::class,    'edit_store'])->name('edit-store');
+    Route::post('/update-store',[App\Http\Controllers\dashboard\SettingController::class, 'update_store'])->name('update-store');
+
 
 
 });
