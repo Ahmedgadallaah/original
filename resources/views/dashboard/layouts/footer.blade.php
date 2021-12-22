@@ -4,6 +4,8 @@
 <script src="{{ asset('dash/js/main.js')}}"></script>
 <script src="{{ asset('dash/js/jquery.easypiechart.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="{{@asset('toastr/toastr.min.js')}}"></script>
+
 <script>
     let myChart = document.getElementById('myChart').getContext('2d');
             let massPopChart = new Chart(myChart, {
@@ -47,4 +49,27 @@
 
               }, 1000);
           });
+</script>
+<script>
+    window.addEventListener('alert', event => {
+        toastr[event.detail.type](event.detail.message,
+        event.detail.title ?? ''), toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        }
+    });
+</script>
+<script type="text/javascript">
+    @if (\Session::has('message'))
+        $(function(){
+            toastr["{{ \Session::get('message')['type'] }}"]('{!! \Session::get("message")["text"] !!}');
+        });
+        <?php echo \Session::forget('message'); ?>
+    @endif
+
+    @if ($errors->any())
+        $(function(){
+            toastr["error"]('{{$errors->first()}}');
+        });
+    @endif
 </script>

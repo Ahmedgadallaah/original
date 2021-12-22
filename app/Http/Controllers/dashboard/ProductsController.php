@@ -13,6 +13,7 @@ use App\Http\Resources\PartsResource;
 use App\Http\Resources\ProductsResource;
 use App\Product;
 use App\Shop;
+use Illuminate\Contracts\Session\Session;
 use TCG\Voyager\Models\Category;
 
 class ProductsController extends Controller
@@ -54,9 +55,22 @@ class ProductsController extends Controller
             'categories' => $categories ,
             'products' => $products
         ];
-        return view('dashboard.products' , $data);
+        return view('dashboard.products.products' , $data);
 
     }
+
+    public function deleteProduct($id)
+    {
+        Product::where('id',$id)->delete();
+        \Session::flash('message', array('type' => 'success', 'text' => __('تم الحذف بنجاح')));
+        return redirect()->back();
+    }
+
+    public function createProduct()
+    {
+        return view('dashboard.products.create_product');
+    }
+
 
     public function contact()
     {

@@ -47,7 +47,7 @@
                                         <div class="title-box-chart">
                                             <h5>المنتجات</h5>
                                                    <div class="product-divs" style="text-align: right !important;">
-                                                    <a href="addProduct.html" class="add-prod"> <i
+                                                    <a href="{{ route('createDealerProducts') }}" class="add-prod"> <i
                                                             class="fas fa-plus"></i> أضف منتج
                                                         </a>
                                                 </div>
@@ -122,7 +122,7 @@
                                                                             <li><a class="dropdown-item"
                                                                                     href="#">تعديل</a></li>
 
-                                                                            <li><a class="dropdown-item" href="#">
+                                                                            <li><a class="dropdown-item" href="{{ route('deleteProducts' , $product->id) }}">
                                                                              مسح
                                                                                 </a>
                                                                                 </li>

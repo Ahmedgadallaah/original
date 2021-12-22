@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // don
 
+    Route::get('/add-product',[App\Http\Controllers\dashboard\ProductsController::class, 'createProduct'])->name('createDealerProducts');
+    Route::get('/delete-product/{id}',[App\Http\Controllers\dashboard\ProductsController::class, 'deleteProduct'])->name('deleteProducts');
     Route::get('/dealer-products',[App\Http\Controllers\dashboard\ProductsController::class, 'products'])->name('dealerProducts');
     Route::get('/dealer-dashboard',[App\Http\Controllers\dashboard\ProductsController::class, 'index'])->name('index');
 
