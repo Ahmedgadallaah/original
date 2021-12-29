@@ -42,7 +42,7 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="@if($product)   {{ route('updateDealerProducts' , $product->id) }} @else {{ route('storeDealerProducts') }} @endif" enctype="multipart/form-data" method="post">
+                                                <form action="@if(isset($product))   {{ route('updateDealerProducts' , $product->id) }} @else {{ route('storeDealerProducts') }} @endif" enctype="multipart/form-data" method="post">
                                                     @csrf
                                                     <input name="page" value="1" type="hidden">
 
