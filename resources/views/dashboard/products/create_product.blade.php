@@ -35,7 +35,7 @@
                                                         <div class="col-md-3">
                                                             <div class="product-percen-sub">
                                                                 <div class="chart" data-percent="25" data-scale-color="#EE504F">
-                                                                    <span> <strong> 1/4 </strong></span>
+                                                                    <span> <strong> 1/2 </strong></span>
                                                                 </div>
                                                               </div>
                                                         </div>
