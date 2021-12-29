@@ -29,14 +29,14 @@ class ProductsController extends Controller
         //  parts
         $partsData = new PartsController();
         $parts = $partsData->dealer_pending_parts();
-        $result =  $parts->toJson();
+        $result = $parts->toJson();
 
         $orderController = new OrderController;
         $orders = $orderController->dealer_orders();
 
         $data = [
             'home' => $dealerData,
-            'parts' =>  $result,
+            'parts' => $result,
             'orders' => $orders->getData(),
         ];
         return view('dashboard.index', $data);
@@ -45,25 +45,25 @@ class ProductsController extends Controller
 
     public function products()
     {
-        $categories = Category::with(['products' => function($query){
-            $query->where('dealer_id' ,auth()->id())->get();
+        $categories = Category::with(['products' => function ($query) {
+            $query->where('dealer_id', auth()->id())->get();
         }])->get();
 
-        $productsData = Product::where('dealer_id' , auth()->id())->get();
+        $productsData = Product::where('dealer_id', auth()->id())->get();
         $products = ProductsResource::collection($productsData);
 
         // return  $products;
         $data = [
-            'categories' => $categories ,
+            'categories' => $categories,
             'products' => $products
         ];
-        return view('dashboard.products.products' , $data);
+        return view('dashboard.products.products', $data);
 
     }
 
     public function deleteProduct($id)
     {
-        Product::where('id',$id)->delete();
+        Product::where('id', $id)->delete();
         \Session::flash('message', array('type' => 'success', 'text' => __('تم الحذف بنجاح')));
         return redirect()->back();
     }
@@ -74,7 +74,7 @@ class ProductsController extends Controller
         $data = [
             'categories' => $categories,
         ];
-        return view('dashboard.products.create_product' , $data);
+        return view('dashboard.products.create_product', $data);
     }
 
 
@@ -83,22 +83,34 @@ class ProductsController extends Controller
 
         $data = [
             'cars' => Car::all(),
-            'product' =>$product
+            'product' => $product
         ];
-        return view('dashboard.products.create_product2'  , $data );
+        return view('dashboard.products.create_product2', $data);
     }
 
-    public  function editProduct(Product  $product) {
+    public function editProduct(Product $product)
+    {
 
         $categories = Category::all();
         $data = [
             'categories' => $categories,
             'product' => $product
         ];
-        return view('dashboard.products.create_product' , $data);
+        return view('dashboard.products.create_product', $data);
     }
 
-    public function storeProduct(Request $request , Product $product=null){
+    public function editProduct2(Product $product)
+    {
+        $data = [
+            'cars' => Car::all(),
+            'product' => $product
+        ];
+        return view('dashboard.products.edit_product2', $data);
+    }
+
+
+    public function storeProduct(Request $request, Product $product = null)
+    {
 
 
         $img = $request->image;
@@ -106,38 +118,81 @@ class ProductsController extends Controller
             $fileName = '/products/dashboard/' . time() . $img->getClientOriginalName();
             $img->move(public_path('../storage/app/public/products/dashboard/'), $fileName);
 
-        }else{
-            $fileName="";
+        } else {
+            $fileName = "";
         }
 
         $imgs = $request->images;
-        $result=[];
+        $result = [];
         if ($request->hasFile('images')) {
-            foreach($imgs as $img){
+            foreach ($imgs as $img) {
                 $fileNames = '/products/dashboard/' . time() . $img->getClientOriginalName();
                 $img->move(public_path('../storage/app/public/products/dashboard/'), $fileNames);
-                array_push($result,$fileNames);
+                array_push($result, $fileNames);
             }
         }
-        $data = $request->except('image' , 'images');
+        $data = $request->except('image', 'images');
 
-        if ($request->has('submit')){
+        if ($request->has('submit')) {
 
-            if (!is_null($product)){
+            if (!is_null($product)) {
                 $product->update($data);
-               \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
+                \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
                 return redirect()->route('dealerProducts');
-            }
-            else
-            {
-                $data['image'] = $fileName ;
-                $data['images'] = json_encode($result) ;
-                $product =  Product::create($data);
+            } else {
+                $data['image'] = $fileName;
+                $data['images'] = json_encode($result);
+                $product = Product::create($data);
                 return redirect()->route('createDealerProducts2', $product);
             }
 
 
         }
+
+
+    }
+
+
+    public function updateProduct(Request $request, Product $product)
+    {
+
+
+        $img = $request->image;
+        if ($request->hasFile('image')) {
+            $fileName = '/products/dashboard/' . time() . $img->getClientOriginalName();
+            $img->move(public_path('../storage/app/public/products/dashboard/'), $fileName);
+
+        } else {
+            $fileName = $product->image;
+        }
+
+        $imgs = $request->images;
+        $result = [];
+        if ($request->hasFile('images')) {
+
+            foreach ($imgs as $img) {
+                $fileNames = '/products/dashboard/' . time() . $img->getClientOriginalName();
+                $img->move(public_path('../storage/app/public/products/dashboard/'), $fileNames);
+                array_push($result, $fileNames);
+            }
+        } else {
+            $fileNames = $product->images;
+        }
+        $data = $request->except('image', 'images');
+
+
+        if ($request->page == "2") {
+                $product->update($data);
+                \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
+                return redirect()->route('dealerProducts');
+            } else {
+                $data['image'] = $fileName;
+                $data['images'] = $result? json_encode($result) : $product->images;
+                $product->update($data);
+                return redirect()->route('editDealerProducts2', $product);
+            }
+
+
 
 
     }
