@@ -75,6 +75,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-store',[App\Http\Controllers\dashboard\SettingController::class,    'edit_store'])->name('edit-store');
     Route::post('/update-store',[App\Http\Controllers\dashboard\SettingController::class, 'update_store'])->name('update-store');
 
+    Route::get('/contact-us',[App\Http\Controllers\dashboard\ProductsController::class,    'contact_page'])->name('get-contact');
+    Route::post('/store-contact',[App\Http\Controllers\dashboard\ProductsController::class, 'send_contact'])->name('store-contact');
+
+
 
 
 });

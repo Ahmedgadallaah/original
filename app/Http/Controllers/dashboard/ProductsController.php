@@ -13,7 +13,9 @@ use App\Http\Controllers\PartsController;
 use App\Http\Resources\PartsResource;
 use App\Http\Resources\ProductsResource;
 use App\Product;
+use App\Contact;
 use App\Shop;
+use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use PhpParser\Node\Stmt\Goto_;
 use TCG\Voyager\Models\Category;
@@ -197,15 +199,26 @@ class ProductsController extends Controller
 
     }
 
-    public function contact()
+    public function send_contact()
     {
 
 
-        $data = Http::post(route('contact'), [
+
+        Contact::create([
             'name' => 'jsjss',
             'email' => 'admin@gmail',
             'message' => 'mdkslsdcvnksdlvsdkvnskdnsdnvjlsnd',
 
         ]);
+
+          \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
+                return redirect()->route('get-contact');
+    }
+     public function contact_page()
+    {
+         $user=User::where('id',auth()->id())->first();
+
+         return view('dashboard.contact')->with('user');
+        //return view('dashboard.contact');
     }
 }
