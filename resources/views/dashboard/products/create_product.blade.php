@@ -42,8 +42,10 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="{{ route('storeDealerProducts') }}" enctype="multipart/form-data" method="post">
+                                                <form action="@if($product)   {{ route('updateDealerProducts' , $product->id) }} @else {{ route('storeDealerProducts') }} @endif" enctype="multipart/form-data" method="post">
                                                     @csrf
+                                                    <input name="page" value="1" type="hidden">
+
                                                     <div class="form-add-finial">
                                                         <div class="add-product-title">
                                                             <h6> تفاصيل أخري </h6>

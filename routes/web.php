@@ -48,9 +48,11 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     // don
-
+    Route::post('/update-product/{product}',[App\Http\Controllers\dashboard\ProductsController::class, 'updateProduct'])->name('updateDealerProducts');
     Route::get('/add-product',[App\Http\Controllers\dashboard\ProductsController::class, 'createProduct'])->name('createDealerProducts');
     Route::get('/add-product/{product}/second-page',[App\Http\Controllers\dashboard\ProductsController::class, 'createProduct2'])->name('createDealerProducts2');
+    Route::get('/edit-product/{product}/second-page',[App\Http\Controllers\dashboard\ProductsController::class, 'editProduct2'])->name('editDealerProducts2');
+
     Route::get('/edit/{product}/product',[App\Http\Controllers\dashboard\ProductsController::class, 'editProduct'])->name('editDealerProducts');
 
     Route::post('/store-product/{product?}',[App\Http\Controllers\dashboard\ProductsController::class, 'storeProduct'])->name('storeDealerProducts');
