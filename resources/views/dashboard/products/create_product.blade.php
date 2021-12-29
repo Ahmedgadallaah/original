@@ -42,7 +42,8 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="">
+                                                <form action="{{ route('storeDealerProducts') }}" enctype="multipart/form-data" method="post">
+                                                    @csrf
                                                     <div class="form-add-finial">
                                                         <div class="add-product-title">
                                                             <h6> تفاصيل أخري </h6>
@@ -50,10 +51,10 @@
                                                         <div class="add-product-title">
                                                             <h6> أضافة صور </h6>
                                                             <div>
-                                                                <img src="images/add-img-example.png" alt="" style="margin-top: -75px;">
+                                                                <img src="{{ asset('images/add-img-example.png') }}"  alt="" style="margin-top: -75px;">
                                                                 <div class="upload" upload-image="" style="border-radius: 10px;">
 
-                                                                    <input type="file" id="files" name="files" class="input-file ng-pristine ng-valid ng-touched" files-model="" ng-model="project.fileList">
+                                                                    <input type="file" id="files" value="{{ $product->image??'' }}" name="image" class="input-file ng-pristine ng-valid ng-touched" files-model="" ng-model="project.fileList">
                                                                    <label for="files" style="border: none">
                                                                         <span class="add-image" style="color: #59626B">
                                                                             <i class="far fa-image"></i> <br>
@@ -64,30 +65,54 @@
                                                                </div>
                                                             </div>
                                                         </div>
+
+                                                        <input type="hidden" name="dealer_id" value="{{ auth()->id() }}">
+                                                        <div class="add-product-title">
+                                                            <h6> أضافة مجموعة صور </h6>
+                                                            <div>
+                                                                <img src="{{ asset('images/add-img-example.png') }}" alt="" style="margin-top: -75px;">
+                                                                <div class="upload" upload-image="" style="border-radius: 10px;">
+
+                                                                    <input type="file" value="{{ $product->images??'' }}" id="files" multiple name="images[]" class="input-file ng-pristine ng-valid ng-touched" files-model="" ng-model="project.fileList">
+                                                                    <label for="files" style="border: none">
+                                                                        <span class="add-image" style="color: #59626B">
+                                                                            <i class="far fa-image"></i> <br>
+                                                                            أضافة صور
+                                                                        </span>
+                                                                        <output id="list"></output>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-grid">
                                                             <label for=""><small>أسم القطعة</small></label>
-                                                            <input type="text" placeholder="كتب النص هنا">
+                                                            <input value="{{ $product->name??'' }}" type="text" name="name" placeholder="كتب النص هنا">
                                                         </div>
 
                                                         <div class="form-grid">
                                                             <label for=""><small>القسم</small></label>
-                                                            <select name="" id="">
-                                                                <option value="">كتب النص هنا</option>
+                                                            <select name="category_id" id="">
+                                                                @forelse($categories as $category)
+                                                                <option @if(isset($product) && $product->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->getTranslatedAttribute('name' ,'ar') }}</option>
+                                                                    @empty
+                                                                    <option value="">لا يوجد</option>
+                                                                @endforelse
                                                             </select>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-grid">
                                                                     <label for=""><small>عدد القطع فى المخزن</small> </label>
-                                                                    <input type="text" placeholder="كتب النص هنا" style="width: 80%; display: inline-block;">
+                                                                    <input value="{{ $product->quantity ?? '' }}" type="text" name="quantity" placeholder="كتب النص هنا" style="width: 80%; display: inline-block;">
                                                                     <span style="font-size: 11px;">قطعة</span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-grid">
                                                                     <label for=""><small>حالة القطعة</small></label>
-                                                                    <select name="" id="">
-                                                                        <option value="">كتب النص هنا</option>
+                                                                    <select name="used" id="" >
+                                                                        <option @if(isset($product) && $product->used == 1) selected @endif value="1">مستعمل</option>
+                                                                        <option @if(isset($product) && $product->used == 0) selected @endif value="0">جديد</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -96,8 +121,8 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <button class="btn btn-primaryC">
-                                                                    <a href="addProduct2.html">التالي</a>
+                                                                <button class="btn btn-primaryC" name="submit" type="submit" >
+                                                                  التالي
                                                                 </button>
                                                             </div>
                                                             <div class="col-md-6 text-left">
