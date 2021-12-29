@@ -96,7 +96,7 @@
                                                         </div>
                                                         <div class="col-md-6 text-left">
                                                             <button class="btn btn-accent">
-                                                                <a href="{{ route('createDealerProducts') }}">السابق</a>
+                                                                <a href="#" onclick="goBack()"> السابق </a>
                                                             </button>
                                                         </div>
                                                     </div>

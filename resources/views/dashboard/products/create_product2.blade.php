@@ -95,7 +95,8 @@
                                                         </div>
                                                         <div class="col-md-6 text-left">
                                                             <button class="btn btn-accent">
-                                                                <a href="{{ route('createDealerProducts') }}">السابق</a>
+                                                                <a href="#" onclick="goBack()">السابق</a>
+
                                                             </button>
                                                         </div>
                                                     </div>
@@ -106,7 +107,7 @@
                                     <div class="col-md-4">
                                         <div class="add-prod-right-sub">
                                             <div class="sub-img">
-                                                <img src="images/add-prod-subImg.png" alt="">
+                                                <img src="{{ asset('images/add-prod-subImg.png') }}" alt="">
                                             </div>
                                             <div class="list-sub">
                                                 <h6>معلومات تهمك</h6>
