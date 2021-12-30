@@ -6,7 +6,7 @@
                     <li class="@if(\Route::currentRouteName()=='settings') liactive @endif"><a href="{{route('settings')}}"><i class="fas fa-cog"></i> الأعدادات</a></li>
                     <li class="@if(\Route::currentRouteName()=='dealerProducts') liactive @endif"><a href="{{ route('dealerProducts') }}"><i class="fas fa-sign-out-alt"></i> منتجاتي</a></li>
                     <li class="@if(\Route::currentRouteName()=='buy-orders') liactive @endif"><a href="{{route('buy-orders')}}"><i class="fas fa-sign-out-alt"></i> طلبات الشراء</a></li>
-                    <li><a href="my-Sales.html"><i class="fas fa-sign-out-alt"></i> مبيعاتي</a></li>
+                    <li class="@if(\Route::currentRouteName()=='dealerSales') liactive @endif"><a href="{{ route('dealerSales') }}"><i class="fas fa-sign-out-alt"></i> مبيعاتي</a></li>
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i> طلبات القطع</a></li>
                     <li><a href="Message.html"><i class="fas fa-comment-alt"></i> الرسايل</a></li>
                     <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</a></li>

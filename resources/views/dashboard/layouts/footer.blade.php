@@ -41,7 +41,7 @@
 <script>
     $(document).ready(function () {
               setTimeout(function () {
-                  $("#exampleModal").modal('show');
+                  $("#exampleModal").modal('hide');
 
                   //  setTimeout(function () {
                   //     $("#exampleModal").modal('hide');

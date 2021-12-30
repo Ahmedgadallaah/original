@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Car;
 use App\CategoryShop;
 use App\Http\Controllers\Controller;
+use App\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\DealerController;
@@ -44,6 +45,10 @@ class ProductsController extends Controller
         return view('dashboard.index', $data);
     }
 
+
+    public function singleItem($id) {
+        return OrderItem::find($id);
+    }
 
     public function products()
     {
@@ -184,24 +189,21 @@ class ProductsController extends Controller
 
 
         if ($request->page == "2") {
-                $product->update($data);
-                \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
-                return redirect()->route('dealerProducts');
-            } else {
-                $data['image'] = $fileName;
-                $data['images'] = $result? json_encode($result) : $product->images;
-                $product->update($data);
-                return redirect()->route('editDealerProducts2', $product);
-            }
-
-
+            $product->update($data);
+            \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
+            return redirect()->route('dealerProducts');
+        } else {
+            $data['image'] = $fileName;
+            $data['images'] = $result ? json_encode($result) : $product->images;
+            $product->update($data);
+            return redirect()->route('editDealerProducts2', $product);
+        }
 
 
     }
 
     public function send_contact()
     {
-
 
 
         Contact::create([
@@ -211,8 +213,8 @@ class ProductsController extends Controller
 
         ]);
 
-          \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
-                return redirect()->route('get-contact');
+        \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
+        return redirect()->route('get-contact');
     }
      public function contact_page()
     {
@@ -221,4 +223,32 @@ class ProductsController extends Controller
          return view('dashboard.contact');
         //return view('dashboard.contact');
     }
+
+    public function dealerSales(Request $request)
+    {
+        $totalInStock = Product::where('dealer_id', auth()->id())->sum('quantity');
+        $totalSellQty = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($query) {
+            $query->where('status', 2);
+        })->sum('product_qty');
+        $totalSales = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($query) {
+            $query->where('status', 2);
+        })->sum('product_total');
+        $totalItems = OrderItem::where('product_dealer_id', auth()->id())
+            ->where('product_name' , 'like' , '%' .$request->search. '%')
+            ->whereHas('order', function ($query) {
+            $query->where('status', 2);
+        })->orderBy('created_at' , 'desc')->get();
+
+
+
+        $data = [
+            'totalInStock' => $totalInStock,
+            'totalSellQty' => $totalSellQty,
+            'totalSales' => $totalSales,
+            'totalItems' => $totalItems
+
+        ];
+        return view('dashboard.sales', $data);
+    }
+
 }

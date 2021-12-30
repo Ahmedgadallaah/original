@@ -49,6 +49,9 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     // don
+
+    Route::get('/single-item/{id}',[App\Http\Controllers\dashboard\ProductsController::class, 'singleItem'])->name('singleItem');
+    Route::get('/dealer-sales',[App\Http\Controllers\dashboard\ProductsController::class, 'dealerSales'])->name('dealerSales');
     Route::post('/update-product/{product}',[App\Http\Controllers\dashboard\ProductsController::class, 'updateProduct'])->name('updateDealerProducts');
     Route::get('/add-product',[App\Http\Controllers\dashboard\ProductsController::class, 'createProduct'])->name('createDealerProducts');
     Route::get('/add-product/{product}/second-page',[App\Http\Controllers\dashboard\ProductsController::class, 'createProduct2'])->name('createDealerProducts2');
