@@ -10,7 +10,7 @@
 <!-- ****************************** Middle-All ****************************** -->
                             <div class="col-md-8">
                                 <div class="add-product-title">
-                                    <h6><a href="Products.html"><img src="images/back-ic.png" width="25" alt=""></a> الرجوع لصفحة منتجاتي </h6>
+                                    <h6><a href="{{ route('dealerProducts') }}"><img src="{{ asset('images/back-ic.png') }}" width="25" alt=""></a> الرجوع لصفحة منتجاتي </h6>
                                 </div>
                                 <div class="add-product-form">
                                     <div class="row">
