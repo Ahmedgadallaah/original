@@ -12,7 +12,7 @@
                                             <li class="@if(\Route::currentRouteName()=='dealer-cars') liactive @endif"> <i class="fas fa-car"></i> تفاصيل السيارات </li>
                                         </a>
                                         <a href="{{route('get-contact')}}">
-                                            <li class="@if(\Route::currentRouteName()=='contact-us') liactive @endif" ><i class="fas fa-headset"></i> الدعم الفني </li>
+                                            <li class="@if(\Route::currentRouteName()=='get-contact') liactive @endif" ><i class="fas fa-headset"></i> الدعم الفني </li>
                                         </a>
                                         <a href="">
                                             <li ><i class="fas fa-headset"></i> تقيمات المتجر </li>

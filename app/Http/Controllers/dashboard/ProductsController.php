@@ -216,9 +216,9 @@ class ProductsController extends Controller
     }
      public function contact_page()
     {
-         $user=User::where('id',auth()->id())->first();
+        //  $user=User::where('id',auth()->id())->first();
 
-         return view('dashboard.contact')->with('user');
+         return view('dashboard.contact');
         //return view('dashboard.contact');
     }
 }

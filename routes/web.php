@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\SlidesController;
 use App\Http\Controllers\OrderController;
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SearchController;
@@ -77,9 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/contact-us',[App\Http\Controllers\dashboard\ProductsController::class,    'contact_page'])->name('get-contact');
     Route::post('/store-contact',[App\Http\Controllers\dashboard\ProductsController::class, 'send_contact'])->name('store-contact');
-
-
-
+    Route::get('/buy-orders',[App\Http\Controllers\dashboard\OrderController::class,    'all_orders'])->name('buy-orders');
+    Route::post('/update-order-status',[App\Http\Controllers\dashboard\OrderController::class,    'update_status'])->name('update-order-status');
 
 });
 

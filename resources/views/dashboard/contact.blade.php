@@ -29,7 +29,8 @@
                                     </div>
                                     <div class="form-grid">
                                         <label for=""><small>الرسالة</small></label>
-                                    <textarea name="message" rows="4" cols="80" class="from-control" placeholder="أكتب النص هنا"></textarea>
+                                    {{-- <textarea   class="from-control" placeholder="أكتب النص هنا"></textarea> --}}
+                                     <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
 
                                     <div class="row">
