@@ -129,7 +129,7 @@
                                               <select name="status" id="" onchange="this.form.submit()">
                                                 <option disabled selected >اختر النوع</option>
                                                 <option  value="0">قيد الإنتظار </option>
-                                                <option  value="1">تم الشحن</option>
+                                                <option  value="1">جاري الشحن</option>
                                               </select>
                                               </form>
                                           </div>
