@@ -17,13 +17,13 @@ class OrderController extends Controller
             ->where('product_name' , 'like' , '%' .$request->search. '%')
             ->whereHas('order' ,function ($q)  use($request){
                 $q->where('status',$request->status);
-            })->with('order')->orderBy('created_at','Desc')->get();
+            })->orderBy('created_at','desc')->get();
         }else{
             $orders=OrderItem::where('product_dealer_id', auth()->id())
              ->where('product_name' , 'like' , '%' .$request->search. '%')
             ->whereHas('order' ,function ($q) {
                 $q->where('status',0)->orWhere('status',1);
-            })->with('order')->orderBy('created_at','Desc')->get();
+            })->orderBy('created_at','desc')->get();
         }
 
 
@@ -40,7 +40,7 @@ class OrderController extends Controller
                 'completed_orders'=>$completed_orders,
                 'rejected_orders'=>$rejected_orders,
                 'search'=>$rejected_orders,
-            ]);;
+            ]);
             //    return view('dashboard.products.edit_product2', $data);
     }
 

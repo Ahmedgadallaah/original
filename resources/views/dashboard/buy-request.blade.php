@@ -127,9 +127,9 @@
                                               <span>نوع الطلب :</span>
                                               <form>
                                               <select name="status" id="" onchange="this.form.submit()">
-                                                <option disabled  value=""></option>
+                                                <option disabled selected >اختر النوع</option>
                                                 <option  value="0">قيد التنفيذ</option>
-                                                  <option  value="1">المنتظرة</option>
+                                                <option  value="1">المنتظرة</option>
                                               </select>
                                               </form>
                                           </div>
