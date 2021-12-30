@@ -6,38 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script src="{{@asset('toastr/toastr.min.js')}}"></script>
 
-<script>
-    let myChart = document.getElementById('myChart').getContext('2d');
-            let massPopChart = new Chart(myChart, {
-                type:'bar',
-                data:{
-                    labels:['السبت', 'الحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
-                    datasets:[{
-                        label:'Population',
-                        data:[
-                            453060,
-                            251045,
-                            617594,
-                            286519,
-                            405162,
-                            305162,
-                            555162,
-                            95072
-                        ],
-                        backgroundColor:'#EE504F',
-                        borderWidth:1,
-                        borderColor:'#fff',
-                        hoverBorderWidth:2,
-                        hoverBorderColor:'#fff'
-                    }]
-                },
-                option:{
-                    legend:{
-                        display:false,
-                    }
-                }
-            });
-</script>
+
 <script>
     $(document).ready(function () {
               setTimeout(function () {
