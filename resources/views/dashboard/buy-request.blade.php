@@ -128,8 +128,8 @@
                                               <form>
                                               <select name="status" id="" onchange="this.form.submit()">
                                                 <option disabled selected >اختر النوع</option>
-                                                <option  value="0">قيد التنفيذ</option>
-                                                <option  value="1">المنتظرة</option>
+                                                <option  value="0">قيد الإنتظار </option>
+                                                <option  value="1">تم الشحن</option>
                                               </select>
                                               </form>
                                           </div>
