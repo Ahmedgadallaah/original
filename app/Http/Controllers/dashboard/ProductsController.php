@@ -65,16 +65,23 @@ class ProductsController extends Controller
 
         $items = array_replace($range, $dbData);
         $array_keys = array_keys($items);
+
+        $date_array = array();
+
+        foreach($array_keys as $dat){
+             array_push($date_array, \Carbon\Carbon::parse($dat)->format('l'));
+        }
+
         $array_values = array_values($items);
 
         $data = [
             'home' => $dealerData,
             'parts' => $result,
             'orders' => $orders->getData(),
-            'keys' => $array_keys,
-            'values' => $array_values
+            'date_array' => $date_array,
+            'array_values' => $array_values,
         ];
-        //  return $data;
+
 
         return view('dashboard.index', $data);
     }

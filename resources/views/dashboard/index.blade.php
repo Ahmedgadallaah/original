@@ -248,10 +248,10 @@
         let massPopChart = new Chart(myChart, {
             type: 'bar',
             data: {
-                labels:  <?php echo json_encode($keys) ?> ,
+                labels:  <?php echo json_encode($date_array) ?> ,
                 datasets: [{
                     label: 'Population',
-                    data: <?php echo json_encode($values) ?>  ,
+                    data: <?php echo json_encode($array_values) ?>  ,
                     backgroundColor: '#EE504F',
                     borderWidth: 1,
                     borderColor: '#fff',
