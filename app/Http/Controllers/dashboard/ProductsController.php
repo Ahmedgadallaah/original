@@ -48,7 +48,7 @@ class ProductsController extends Controller
         $period = new DatePeriod(new DateTime($from), new DateInterval('P1D'), new DateTime($today));
         $dbData = [];
         foreach ($period as $date) {
-            $range[$date->format("Y-m-d")] = 0;
+            $range[$date->format("Y-m-d")] = "0";
         }
         $items =   OrderItem::where('product_dealer_id', auth()->id())
             ->whereHas('order', function ($q) {
@@ -64,17 +64,15 @@ class ProductsController extends Controller
         }
 
         $items = array_replace($range, $dbData);
-
-        return $items ;
-
+        $array_keys = array_keys($items);
+        $array_values = array_values($items);
 
         $data = [
             'home' => $dealerData,
             'parts' => $result,
             'orders' => $orders->getData(),
-            'items' => $items
-            // 'qty' => $qty,
-            // 'labels' => $labels
+            'keys' => $array_keys,
+            'values' => $array_values
         ];
         //  return $data;
 
