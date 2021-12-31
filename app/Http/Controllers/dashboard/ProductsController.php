@@ -25,6 +25,7 @@ use DateInterval;
 use DatePeriod;
 use DateTime;
 use DB;
+
 class ProductsController extends Controller
 {
     public function index()
@@ -42,66 +43,46 @@ class ProductsController extends Controller
         $orderController = new OrderController;
         $orders = $orderController->dealer_orders();
 
-        //         $qty=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
-        //                 $q->where('status', 2);
-        //                 })
-        //                 ->where('updated_at', '>=', Carbon::now()->subDays(7))
-        //                   ->groupBy('date')
-        //                 ->orderBy('date', 'DESC')
-        //                 ->get([
-        //                     DB::raw('DATE(updated_at) as date'),
-        //                     DB::raw('SUM(product_qty) as "qty"')
-        //                 ])->pluck('qty','date')->toArray();
-
-        //         $labels=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
-        //                 $q->where('status', 2);
-
-        //                 })
-        //                 ->where('updated_at', '>=', Carbon::now()->subDays(7))
-        //                   ->groupBy('date')
-        //                 ->orderBy('date', 'DESC')
-        //                 ->get([
-        //                     DB::raw('DATE(updated_at) as date'),
-        //                     DB::raw('SUM(product_qty) as "qty"')
-        //                 ])->pluck('date' , 'product_qty')->toArray();
-
-        // return $labels;
-
-
         $today = Carbon::today();
-            $items = OrderItem::
-            where('product_dealer_id', auth()->id())
-            ->whereHas('order',function($q) {
-                $q->where('status', 2);})
-            ->where('updated_at', '>', $today->subDays(7))
+        $from = $today->parse()->endOfDay()->subDays(7);
+        $period = new DatePeriod(new DateTime($from), new DateInterval('P1D'), new DateTime($today));
+        $dbData = [];
+        foreach ($period as $date) {
+            $range[$date->format("Y-m-d")] = 0;
+        }
+        $items =   OrderItem::where('product_dealer_id', auth()->id())
+            ->whereHas('order', function ($q) {
+                $q->where('status', 2);
+            })->select(DB::raw('DATE(updated_at) as time'), DB::raw('sum(product_qty) as product_qty'))
+            ->whereDate('updated_at', '>=', date($from) . ' 00:00:00')
+            ->whereDate('updated_at', '<=', date($today) . ' 00:00:00')
+            ->groupBy('time')
             ->get();
 
-            $response = array();
-            $i = 0;
-            while ($i < 7) {
-                $dayOfWeek = $today->parse()->endOfDay()->subDays($i)->format('Y-m-d');
-                $itemsForThisDay = $items->where('updated_at', $dayOfWeek);
-                $response["$dayOfWeek"] = $itemsForThisDay->sum('product_qty');
-                $i++;
-            }
+        foreach ($items as $val) {
+            $dbData[$val->time] = $val->product_qty;
+        }
 
-        return response()->json($response);
+        $items = array_replace($range, $dbData);
 
+        return $items ;
 
 
         $data = [
             'home' => $dealerData,
             'parts' => $result,
             'orders' => $orders->getData(),
-            'qty' => $qty,
-            'labels' => $labels
+            'items' => $items
+            // 'qty' => $qty,
+            // 'labels' => $labels
         ];
         //  return $data;
 
         return view('dashboard.index', $data);
     }
-    public function part_request(){
-          $partsData = new PartsController();
+    public function part_request()
+    {
+        $partsData = new PartsController();
         $parts = $partsData->dealer_pending_parts();
         $result = $parts->toJson();
 
@@ -110,11 +91,11 @@ class ProductsController extends Controller
         ];
 
         return view('dashboard.part-request', $data);
-
     }
 
 
-    public function singleItem($id) {
+    public function singleItem($id)
+    {
         return OrderItem::find($id);
     }
 
@@ -133,7 +114,6 @@ class ProductsController extends Controller
             'products' => $products
         ];
         return view('dashboard.products.products', $data);
-
     }
 
     public function deleteProduct($id)
@@ -192,7 +172,6 @@ class ProductsController extends Controller
         if ($request->hasFile('image')) {
             $fileName = '/products/dashboard/' . time() . $img->getClientOriginalName();
             $img->move(public_path('../storage/app/public/products/dashboard/'), $fileName);
-
         } else {
             $fileName = "";
         }
@@ -220,11 +199,7 @@ class ProductsController extends Controller
                 $product = Product::create($data);
                 return redirect()->route('createDealerProducts2', $product);
             }
-
-
         }
-
-
     }
 
 
@@ -236,7 +211,6 @@ class ProductsController extends Controller
         if ($request->hasFile('image')) {
             $fileName = '/products/dashboard/' . time() . $img->getClientOriginalName();
             $img->move(public_path('../storage/app/public/products/dashboard/'), $fileName);
-
         } else {
             $fileName = $product->image;
         }
@@ -266,8 +240,6 @@ class ProductsController extends Controller
             $product->update($data);
             return redirect()->route('editDealerProducts2', $product);
         }
-
-
     }
 
     public function send_contact()
@@ -284,11 +256,11 @@ class ProductsController extends Controller
         \Session::flash('message', array('type' => 'success', 'text' => __('تم حفظ البيانات')));
         return redirect()->route('get-contact');
     }
-     public function contact_page()
+    public function contact_page()
     {
         //  $user=User::where('id',auth()->id())->first();
 
-         return view('dashboard.contact');
+        return view('dashboard.contact');
         //return view('dashboard.contact');
     }
 
@@ -302,10 +274,10 @@ class ProductsController extends Controller
             $query->where('status', 2);
         })->sum('product_total');
         $totalItems = OrderItem::where('product_dealer_id', auth()->id())
-            ->where('product_name' , 'like' , '%' .$request->search. '%')
+            ->where('product_name', 'like', '%' . $request->search . '%')
             ->whereHas('order', function ($query) {
-            $query->where('status', 2);
-        })->orderBy('created_at' , 'desc')->get();
+                $query->where('status', 2);
+            })->orderBy('created_at', 'desc')->get();
 
 
 
@@ -318,5 +290,4 @@ class ProductsController extends Controller
         ];
         return view('dashboard.sales', $data);
     }
-
 }
