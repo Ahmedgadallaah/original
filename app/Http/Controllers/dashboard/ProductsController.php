@@ -68,8 +68,8 @@ class ProductsController extends Controller
 
         $date_array = array();
 
-        foreach($array_keys as $dat){
-             array_push($date_array, \Carbon\Carbon::parse($dat)->format('l'));
+        foreach($array_keys as $date){
+             array_push($date_array, \Carbon\Carbon::parse($date)->format('l'));
         }
 
         $array_values = array_values($items);
