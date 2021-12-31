@@ -396,7 +396,6 @@ class CarsController extends Controller
     public function delete_car($car_id){
         $user = auth()->id();
          $car = Car::where('id', $car_id)->where('user_id', $user)->first();
-
          if($car){
 
             $car->delete();
@@ -413,6 +412,7 @@ class CarsController extends Controller
                 // 'data' => $car
             ]);
          }
+
 
     }
 

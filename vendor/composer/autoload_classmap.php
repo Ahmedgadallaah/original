@@ -59,6 +59,7 @@ return array(
     'App\\Http\\Controllers\\dashboard\\ProductsController' => $baseDir . '/app/Http/Controllers/dashboard/ProductsController.php',
     'App\\Http\\Controllers\\dashboard\\SettingController' => $baseDir . '/app/Http/Controllers/dashboard/SettingController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'App\\Http\\Livewire\\AddCar' => $baseDir . '/app/Http/Livewire/AddCar.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',

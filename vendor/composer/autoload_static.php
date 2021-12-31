@@ -709,6 +709,7 @@ class ComposerStaticInit9cfac3e33317929257a8efeaacbb7b0d
         'App\\Http\\Controllers\\dashboard\\ProductsController' => __DIR__ . '/../..' . '/app/Http/Controllers/dashboard/ProductsController.php',
         'App\\Http\\Controllers\\dashboard\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/dashboard/SettingController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Livewire\\AddCar' => __DIR__ . '/../..' . '/app/Http/Livewire/AddCar.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
