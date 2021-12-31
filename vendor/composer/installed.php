@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '74d450d417ed8e9eeb75cf2eb52110cadae389a9',
+    'reference' => '48058a0de6a9bbd594074b38ba158aa54c3e8ba7',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -535,7 +535,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '74d450d417ed8e9eeb75cf2eb52110cadae389a9',
+      'reference' => '48058a0de6a9bbd594074b38ba158aa54c3e8ba7',
     ),
     'laravel/passport' => 
     array (
@@ -669,6 +669,15 @@
       array (
         0 => '*',
       ),
+    ),
+    'livewire/livewire' => 
+    array (
+      'pretty_version' => 'v2.8.2',
+      'version' => '2.8.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f6b1726d1068a5b7315f03dc4e58d5763b928374',
     ),
     'lncd/oauth2' => 
     array (
