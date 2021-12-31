@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/contact-us',[App\Http\Controllers\dashboard\ProductsController::class,    'contact_page'])->name('get-contact');
     Route::post('/store-contact',[App\Http\Controllers\dashboard\ProductsController::class, 'send_contact'])->name('store-contact');
     Route::get('/buy-orders',[App\Http\Controllers\dashboard\OrderController::class,    'all_orders'])->name('buy-orders');
+    Route::get('/part-request',[App\Http\Controllers\dashboard\ProductsController::class,    'part_request'])->name('part-request');
     Route::post('/update-order-status',[App\Http\Controllers\dashboard\OrderController::class,    'update_status'])->name('update-order-status');
 
 });

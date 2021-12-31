@@ -14,7 +14,7 @@ class OrderItem extends Model
 
     protected $fillable = ['order_id' , 'product_id','product_name','product_price','product_qty','product_dealer_id','product_total'];
 
-
+    protected $dates = ['updated_at','created_at'];
 
 
     public function order()

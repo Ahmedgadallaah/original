@@ -20,11 +20,14 @@ use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use PhpParser\Node\Stmt\Goto_;
 use TCG\Voyager\Models\Category;
+use Carbon\Carbon;
 
+use DB;
 class ProductsController extends Controller
 {
     public function index()
     {
+
         // dealer info
         $dealer = new DealerController;
         $dealerData = $dealer->home();
@@ -37,12 +40,81 @@ class ProductsController extends Controller
         $orderController = new OrderController;
         $orders = $orderController->dealer_orders();
 
+        $qty=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
+                $q->where('status', 2);
+
+                })
+                ->where('updated_at', '>=', Carbon::now()->subDays(7))
+                  ->groupBy('date')
+                ->orderBy('date', 'DESC')
+                ->get([
+                    DB::raw('DATE(updated_at) as date'),
+                    DB::raw('SUM(product_qty) as "qty"')
+                ])->pluck('qty','date')->toArray();
+
+        // $labels=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
+        //         $q->where('status', 2);
+
+        //         })
+        //         ->where('updated_at', '>=', Carbon::now()->subDays(7))
+        //           ->groupBy('date')
+        //         ->orderBy('date', 'DESC')
+        //         ->get([
+        //             DB::raw('DATE(updated_at) as date'),
+        //             DB::raw('SUM(product_qty) as "qty"')
+        //         ])->pluck('date')->toArray();
+
+
+                $today = Carbon::today();
+                    $events = OrderItem::
+                    where('product_dealer_id', auth()->id())
+                    ->whereHas('order',function($q) {
+                        $q->where('status', 2);})
+                    ->get();
+
+
+                    $totalSUM = $events->count(); //Should return your total number of events from past 7 days
+                    // $response = array();
+                    $response = array();
+                    $i = 0;
+                    // return $events;
+                    while ($i < 7) {
+                        $dayOfWeek = $today->subDays($i);
+
+                        $eventsForThisDay = $events->where('updated_at', $dayOfWeek);
+                        $response[$dayOfWeek] = $eventsForThisDay->count();
+                        $i++;
+                    }
+
+                    return response()->json($response);
+
+
+
+
+
+
         $data = [
             'home' => $dealerData,
             'parts' => $result,
             'orders' => $orders->getData(),
+            'qty' => $qty,
+            'labels' => $labels
         ];
+        //  return $data;
+
         return view('dashboard.index', $data);
+    }
+    public function part_request(){
+          $partsData = new PartsController();
+        $parts = $partsData->dealer_pending_parts();
+        $result = $parts->toJson();
+
+        $data = [
+            'parts' => $result,
+        ];
+
+        return view('dashboard.part-request', $data);
+
     }
 
 

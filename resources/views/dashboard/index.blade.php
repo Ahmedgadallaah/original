@@ -109,7 +109,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="show-all-link">
-                                                            <span><a href="">مشاهده الكل</a></span>
+                                                            <span><a href="{{ route('part-request') }}">مشاهده الكل</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,7 +173,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="show-all-link">
-                                                            <span><a href="">مشاهده الكل</a></span>
+                                                            <span><a href="{{ route('buy-orders') }}">مشاهده الكل</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -243,23 +243,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
     <script>
+
         let myChart = document.getElementById('myChart').getContext('2d');
         let massPopChart = new Chart(myChart, {
             type: 'bar',
             data: {
-                labels: ['السبت', 'الحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
+                labels:<?php echo json_encode($labels) ?>,
                 datasets: [{
                     label: 'Population',
-                    data: [
-                        453060,
-                        251045,
-                        617594,
-                        286519,
-                        405162,
-                        305162,
-                        555162,
-                        95072
-                    ],
+                    data: <?php echo json_encode($qty) ?>,
                     backgroundColor: '#EE504F',
                     borderWidth: 1,
                     borderColor: '#fff',
