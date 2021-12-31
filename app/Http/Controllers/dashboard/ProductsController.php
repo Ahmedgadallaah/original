@@ -21,7 +21,9 @@ use Illuminate\Contracts\Session\Session;
 use PhpParser\Node\Stmt\Goto_;
 use TCG\Voyager\Models\Category;
 use Carbon\Carbon;
-
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use DB;
 class ProductsController extends Controller
 {
@@ -40,56 +42,50 @@ class ProductsController extends Controller
         $orderController = new OrderController;
         $orders = $orderController->dealer_orders();
 
-        $qty=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
-                $q->where('status', 2);
+        //         $qty=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
+        //                 $q->where('status', 2);
+        //                 })
+        //                 ->where('updated_at', '>=', Carbon::now()->subDays(7))
+        //                   ->groupBy('date')
+        //                 ->orderBy('date', 'DESC')
+        //                 ->get([
+        //                     DB::raw('DATE(updated_at) as date'),
+        //                     DB::raw('SUM(product_qty) as "qty"')
+        //                 ])->pluck('qty','date')->toArray();
 
-                })
-                ->where('updated_at', '>=', Carbon::now()->subDays(7))
-                  ->groupBy('date')
-                ->orderBy('date', 'DESC')
-                ->get([
-                    DB::raw('DATE(updated_at) as date'),
-                    DB::raw('SUM(product_qty) as "qty"')
-                ])->pluck('qty','date')->toArray();
+        //         $labels=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
+        //                 $q->where('status', 2);
 
-        // $labels=OrderItem::where('product_dealer_id', auth()->id())->whereHas('order',function($q) {
-        //         $q->where('status', 2);
+        //                 })
+        //                 ->where('updated_at', '>=', Carbon::now()->subDays(7))
+        //                   ->groupBy('date')
+        //                 ->orderBy('date', 'DESC')
+        //                 ->get([
+        //                     DB::raw('DATE(updated_at) as date'),
+        //                     DB::raw('SUM(product_qty) as "qty"')
+        //                 ])->pluck('date' , 'product_qty')->toArray();
 
-        //         })
-        //         ->where('updated_at', '>=', Carbon::now()->subDays(7))
-        //           ->groupBy('date')
-        //         ->orderBy('date', 'DESC')
-        //         ->get([
-        //             DB::raw('DATE(updated_at) as date'),
-        //             DB::raw('SUM(product_qty) as "qty"')
-        //         ])->pluck('date')->toArray();
-
-
-                $today = Carbon::today();
-                    $events = OrderItem::
-                    where('product_dealer_id', auth()->id())
-                    ->whereHas('order',function($q) {
-                        $q->where('status', 2);})
-                    ->get();
+        // return $labels;
 
 
-                    $totalSUM = $events->count(); //Should return your total number of events from past 7 days
-                    // $response = array();
-                    $response = array();
-                    $i = 0;
-                    // return $events;
-                    while ($i < 7) {
-                        $dayOfWeek = $today->subDays($i);
+        $today = Carbon::today();
+            $items = OrderItem::
+            where('product_dealer_id', auth()->id())
+            ->whereHas('order',function($q) {
+                $q->where('status', 2);})
+            ->where('updated_at', '>', $today->subDays(7))
+            ->get();
 
-                        $eventsForThisDay = $events->where('updated_at', $dayOfWeek);
-                        $response[$dayOfWeek] = $eventsForThisDay->count();
-                        $i++;
-                    }
+            $response = array();
+            $i = 0;
+            while ($i < 7) {
+                $dayOfWeek = $today->parse()->endOfDay()->subDays($i)->format('Y-m-d');
+                $itemsForThisDay = $items->where('updated_at', $dayOfWeek);
+                $response["$dayOfWeek"] = $itemsForThisDay->sum('product_qty');
+                $i++;
+            }
 
-                    return response()->json($response);
-
-
-
+        return response()->json($response);
 
 
 

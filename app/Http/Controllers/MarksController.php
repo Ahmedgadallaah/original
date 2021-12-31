@@ -10,7 +10,7 @@ class MarksController extends Controller
 {
     public function marks()
     {
-        
+
         $data=Mark::all();
         return MarksResource::collection($data);
     }
