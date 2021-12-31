@@ -44,7 +44,7 @@ class ProductsController extends Controller
         $orders = $orderController->dealer_orders();
 
         $today = Carbon::today();
-        $from = $today->parse()->endOfDay()->subDays(7);
+        $from = $today->parse()->endOfDay()->subDays(6);
         $period = new DatePeriod(new DateTime($from), new DateInterval('P1D'), new DateTime($today));
         $dbData = [];
         foreach ($period as $date) {
