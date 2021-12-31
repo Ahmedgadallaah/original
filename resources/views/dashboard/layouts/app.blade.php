@@ -11,6 +11,8 @@
     @yield('content')
 
     @include('dashboard.layouts.footer')
+        @livewireScripts
+
 </body>
 
 </html>
