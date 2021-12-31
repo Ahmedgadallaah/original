@@ -17,6 +17,10 @@ use App\Http\Controllers\ShopsController;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\CarsController;
+use Illuminate\Support\Facades\Session;
+
+use function PHPSTORM_META\type;
+
 class SettingController extends Controller
 {
 
@@ -188,6 +192,7 @@ class SettingController extends Controller
                         'user_id' => $user,
 
                     ]);
+            Session::flash('message', array('type' => 'success', 'text' => __('تم الاضافة بنجاح')));
 
             return redirect()->route('dealer-cars');
 
@@ -202,6 +207,8 @@ class SettingController extends Controller
             $user = auth()->id();
             $car = Car::where('id', $request->id)->where('user_id', $user)->first();
             $car->delete();
+        Session::flash('message', array('type' => 'success', 'text' => __('تم الحذف بنجاح')));
+
             return redirect()->route('dealer-cars');
         }
 

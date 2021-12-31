@@ -27,7 +27,7 @@
                                     <div class="col-md-3">
                                         <div class="thre-sec">
                                             <div>
-                                                       {{-- @dd($home) --}}
+                                                {{-- @dd($home) --}}
                                                 <h6>إجمالي ربح اليوم : {{ $home['day_earning'] }}</h6>
                                             </div>
 
@@ -124,7 +124,7 @@
 
                                                                     <div class="prod-img-parts">
                                                                         @if ($part->image)
-                                                                           <img src="{{ $part->image[0] }}" width="100%">
+                                                                            <img src="{{ $part->image[0] }}" width="100%">
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -143,7 +143,7 @@
 
                                                                         </span>
                                                                         <span> <i class="fa fa-phone"></i>
-                                                                         رقم طالب القطعة : {{ $part->user->phone }}
+                                                                            رقم طالب القطعة : {{ $part->user->phone }}
 
                                                                         </span>
                                                                     </div>
@@ -184,39 +184,40 @@
                                             @forelse ( $orders->data as $order )
 
 
-                                            <div class="parts-contect-sec">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="prod-img-parts">
-                                                                    <img src="{{  $order->product->image??'' }}" width="100%">
+                                                <div class="parts-contect-sec">
+                                                    <div class="row">
+                                                        <div class="col-md-9">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="prod-img-parts">
+                                                                        <img src="{{ $order->product->image ?? '' }}"
+                                                                            width="100%">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="prod-txts-parts">
-                                                                    <h6>العنوان</h6>
-                                                                    <span> <i class="fas fa-map-marker-alt"></i>
+                                                                <div class="col-md-8">
+                                                                    <div class="prod-txts-parts">
+                                                                        <h6>العنوان</h6>
+                                                                        <span> <i class="fas fa-map-marker-alt"></i>
 
-                                                                    {{  $order->order->name }}
-                                                                    </span>
-                                                                    <span> <i class="fa fa-clock"></i>
-                                                                         الكمية : {{  $order->quantity }}
-                                                                    </span>
-                                                                    <span> <i class="fas fa-credit-card"></i>
-                                                                      الهاتف  : {{  $order->order->phone }}
-                                                                    </span>
+                                                                            {{ $order->order->name }}
+                                                                        </span>
+                                                                        <span> <i class="fa fa-clock"></i>
+                                                                            الكمية : {{ $order->quantity }}
+                                                                        </span>
+                                                                        <span> <i class="fas fa-credit-card"></i>
+                                                                            الهاتف : {{ $order->order->phone }}
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div style="text-align: left;">
-                                                            <img src="images/right.png" width="20" alt="">
+                                                        <div class="col-md-3">
+                                                            <div style="text-align: left;">
+                                                                <img src="images/right.png" width="20" alt="">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
                                             @empty
                                                 لا يوجد طلبات
@@ -230,49 +231,8 @@
                         </div>
 
                         <!-- ****************************** Right Side ****************************** -->
-                        <div class="col-md-4">
-                            <div class="right-side">
-                                <div class="bg-tarqia">
-                                    <h6>قم بترقية حسابك الان !</h6>
-                                    <p>تعرف علي خطط اسعارنا وقم
-                                        بتفعيل خطة الأسعار التي تناسبك</p>
-                                    <button><a href="" data-bs-toggle="modal" data-bs-target="#Terms-Conditions">إشترك
-                                            الان</a></button>
-                                </div>
+                        @include('dashboard.layouts.left_side')
 
-                                <div class="activities-per-right-side">
-                                    <h6>الانشطة</h6>
-                                    <div class="sub-activ-right-side">
-                                        <span style="display: block;">لقد قمت بالتاكيد على طلب <label>احمد
-                                                ابراهيم</label> بخصوص قطع غيار</span>
-                                        <span class="date-right-side">
-                                            <small>الجمعة 20 فبراير 2020</small>
-                                        </span>
-                                    </div>
-                                    <div class="sub-activ-right-side">
-                                        <span style="display: block;">لقد قمت بالتاكيد على طلب <label>احمد
-                                                ابراهيم</label> بخصوص قطع غيار</span>
-                                        <span class="date-right-side">
-                                            <small>الجمعة 20 فبراير 2020</small>
-                                        </span>
-                                    </div>
-                                    <div class="sub-activ-right-side">
-                                        <span style="display: block;">لقد قمت بالتاكيد على طلب <label>احمد
-                                                ابراهيم</label> بخصوص قطع غيار</span>
-                                        <span class="date-right-side">
-                                            <small>الجمعة 20 فبراير 2020</small>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="no-activi text-center">
-                                    <div class="img-no-activ">
-                                        <img src="{{ asset('dash/images/no-activites.png') }}">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -280,40 +240,40 @@
     </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
-        <script>
-            let myChart = document.getElementById('myChart').getContext('2d');
-            let massPopChart = new Chart(myChart, {
-                type:'bar',
-                data:{
-                    labels:['السبت', 'الحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
-                    datasets:[{
-                        label:'Population',
-                        data:[
-                            453060,
-                            251045,
-                            617594,
-                            286519,
-                            405162,
-                            305162,
-                            555162,
-                            95072
-                        ],
-                        backgroundColor:'#EE504F',
-                        borderWidth:1,
-                        borderColor:'#fff',
-                        hoverBorderWidth:2,
-                        hoverBorderColor:'#fff'
-                    }]
-                },
-                option:{
-                    legend:{
-                        display:false,
-                    }
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+        let massPopChart = new Chart(myChart, {
+            type: 'bar',
+            data: {
+                labels: ['السبت', 'الحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
+                datasets: [{
+                    label: 'Population',
+                    data: [
+                        453060,
+                        251045,
+                        617594,
+                        286519,
+                        405162,
+                        305162,
+                        555162,
+                        95072
+                    ],
+                    backgroundColor: '#EE504F',
+                    borderWidth: 1,
+                    borderColor: '#fff',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#fff'
+                }]
+            },
+            option: {
+                legend: {
+                    display: false,
                 }
-            });
-        </script>
+            }
+        });
+    </script>
     <!-- Modal -->
 
     {{-- @include('dashboard.includes.modal') --}}
