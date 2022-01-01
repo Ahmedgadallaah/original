@@ -69,7 +69,10 @@ class ProductsController extends Controller
         $date_array = array();
 
         foreach($array_keys as $date){
-             array_push($date_array, \Carbon\Carbon::parse($date)->format('l'));
+            array_push($date_array, \Carbon\Carbon::parse($date)->format('l'));
+            //setLocale(LC_TIME, 'ar');
+            // array_push($date_array, \Carbon\Carbon::parse($date)->formatLocalized('l'));
+
         }
 
         $array_values = array_values($items);
