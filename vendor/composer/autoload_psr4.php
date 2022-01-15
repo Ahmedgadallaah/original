@@ -75,6 +75,8 @@ return array(
     'Laravel\\Sail\\' => array($vendorDir . '/laravel/sail/src'),
     'Laravel\\Passport\\Database\\Factories\\' => array($vendorDir . '/laravel/passport/database/factories'),
     'Laravel\\Passport\\' => array($vendorDir . '/laravel/passport/src'),
+    'LaravelFCM\\Mocks\\' => array($vendorDir . '/code-lts/laravel-fcm/tests/mocks'),
+    'LaravelFCM\\' => array($vendorDir . '/code-lts/laravel-fcm/src'),
     'Larapack\\DoctrineSupport\\' => array($vendorDir . '/larapack/doctrine-support/src'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
     'Illuminate\\Support\\' => array($vendorDir . '/laravel/framework/src/Illuminate/Macroable', $vendorDir . '/laravel/framework/src/Illuminate/Collections'),

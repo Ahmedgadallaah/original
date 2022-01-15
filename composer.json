@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "bavix/laravel-wallet": "^6.1",
+        "code-lts/laravel-fcm": "^1.6",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

@@ -8,7 +8,7 @@
                     <li class="@if(\Route::currentRouteName()=='buy-orders') liactive @endif"><a href="{{route('buy-orders')}}"><i class="fas fa-sign-out-alt"></i> طلبات الشراء</a></li>
                     <li class="@if(\Route::currentRouteName()=='dealerSales') liactive @endif"><a href="{{ route('dealerSales') }}"><i class="fas fa-sign-out-alt"></i> مبيعاتي</a></li>
                     <li class="@if(\Route::currentRouteName()=='part-request') liactive @endif"><a href="{{ route('part-request') }}"><i class="fas fa-sign-out-alt"></i> طلبات القطع</a></li>
-                    <li><a href="Message.html"><i class="fas fa-comment-alt"></i> الرسايل</a></li>
+                    <li class="@if(\Route::currentRouteName()=='chat') liactive @endif"><a href="{{ route('chat') }}"><i class="fas fa-comment-alt"></i> الرسايل</a></li>
                     <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</a></li>
                 </ul>
             </div>

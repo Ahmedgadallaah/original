@@ -19,6 +19,7 @@ use App\Http\Controllers\SlidesController;
 use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\dashboard\ChatController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DealerController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // don
 
+    Route::get('chats',[ChatController::class , 'getChat'] )->name('chat');
     Route::get('/single-item/{id}',[App\Http\Controllers\dashboard\ProductsController::class, 'singleItem'])->name('singleItem');
     Route::get('/dealer-sales',[App\Http\Controllers\dashboard\ProductsController::class, 'dealerSales'])->name('dealerSales');
     Route::post('/update-product/{product}',[App\Http\Controllers\dashboard\ProductsController::class, 'updateProduct'])->name('updateDealerProducts');

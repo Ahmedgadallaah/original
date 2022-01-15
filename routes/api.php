@@ -22,6 +22,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\dashboard\FCMController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +37,7 @@ use App\Http\Controllers\DealerController;
 Route::middleware('auth:api')->prefix('v1')->group(function(){
     // return $request->user();
 
+    Route::post('/save-token', [FCMController::class , 'index']);
     Route::get('/logout', [RegisterController::class, 'logout']);
 
     // return authenticated user data
