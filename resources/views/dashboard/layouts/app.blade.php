@@ -5,7 +5,8 @@
 
 {{-- <body style="direction: @if (app()->getLocale() == 'ar')  rtl !important @else ltr !important; @endif"> --}}
 
-<body style="background-color: #F3F7FA;">
+{{-- <body style="background-color: #F3F7FA;"> --}}
+<body >
     @include('dashboard.layouts.nav')
 
     @yield('content')

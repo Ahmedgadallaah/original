@@ -12,15 +12,7 @@
                         <div class="row">
                             @include('dashboard.includes.settings-menu')
                             <div class="col-md-8">
-                                <div class="bannner-apps">
-                                    <div class="apps-show-banner">
-                                        <h5>قم بالترقية الأن</h5>
-                                        <p style="font-size: 10px;">قم بترقية حسابك حتي تتمكن من التمتع بميزات تساعدك في
-                                            تحسين
-                                            عملية البيع والوصول لعدد أكبر من المستخدمين</p>
-                                        <a href=""><img src="images/tarqia-app.png"></a>
-                                    </div>
-                                </div>
+                                @include('dashboard.includes.banner_apps')
                                 <div class="right-message-details">
                                     <h6>تفاصيل الحساب</h6>
                                     <div class="parts-sec-all products-parts-sec-all">

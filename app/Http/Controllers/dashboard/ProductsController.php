@@ -70,8 +70,6 @@ class ProductsController extends Controller
 
         foreach($array_keys as $date){
             array_push($date_array, \Carbon\Carbon::parse($date)->format('l'));
-            //setLocale(LC_TIME, 'ar');
-            // array_push($date_array, \Carbon\Carbon::parse($date)->formatLocalized('l'));
 
         }
 
@@ -274,6 +272,9 @@ class ProductsController extends Controller
 
     public function dealerSales(Request $request)
     {
+        $dealer = new DealerController;
+        $dealerData = $dealer->home();
+
         $totalInStock = Product::where('dealer_id', auth()->id())->sum('quantity');
         $totalSellQty = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($query) {
             $query->where('status', 2);
@@ -288,12 +289,45 @@ class ProductsController extends Controller
             })->orderBy('created_at', 'desc')->get();
 
 
+        $today = Carbon::today();
+        $from = $today->parse()->endOfDay()->subDays(7);
+        $period = new DatePeriod(new DateTime($from), new DateInterval('P1D'), new DateTime($today));
+        $dbData = [];
+        foreach ($period as $date) {
+            $range[$date->format("Y-m-d")] = "0";
+        }
+        $items =   OrderItem::where('product_dealer_id', auth()->id())
+            ->whereHas('order', function ($q) {
+                $q->where('status', 2);
+            })->select(DB::raw('DATE(updated_at) as time'), DB::raw('sum(product_qty) as product_qty'))
+            ->whereDate('updated_at', '>=', date($from) . ' 00:00:00')
+            ->whereDate('updated_at', '<=', date($today) . ' 00:00:00')
+            ->groupBy('time')
+            ->get();
+
+        foreach ($items as $val) {
+            $dbData[$val->time] = $val->product_qty;
+        }
+
+        $items = array_replace($range, $dbData);
+        $array_keys = array_keys($items);
+
+        $date_array = array();
+
+        foreach ($array_keys as $date) {
+            array_push($date_array, \Carbon\Carbon::parse($date)->format('l'));
+        }
+        $array_values = array_values($items);
+
 
         $data = [
+            'home' => $dealerData,
             'totalInStock' => $totalInStock,
             'totalSellQty' => $totalSellQty,
             'totalSales' => $totalSales,
-            'totalItems' => $totalItems
+            'totalItems' => $totalItems,
+            'date_array' => $date_array,
+            'array_values' => $array_values,
 
         ];
         return view('dashboard.sales', $data);

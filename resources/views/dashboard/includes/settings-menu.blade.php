@@ -14,9 +14,9 @@
                                         <a href="{{route('get-contact')}}">
                                             <li class="@if(\Route::currentRouteName()=='get-contact') liactive @endif" ><i class="fas fa-headset"></i> الدعم الفني </li>
                                         </a>
-                                        <a href="">
+                                        {{-- <a href="">
                                             <li ><i class="fas fa-headset"></i> تقيمات المتجر </li>
-                                        </a>
+                                        </a> --}}
                                     </ul>
                                 </div>
                             </div>

@@ -48,7 +48,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a href="">الدخول كتاجر</a>
+                    <a href="{{  route('login') }}">الدخول كتاجر</a>
                 </span>
             </div>
         </div>

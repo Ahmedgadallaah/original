@@ -8,14 +8,8 @@
                     <div class="row">
                         <!-- ****************************** Middle-All ****************************** -->
                         <div class="col-md-8">
-                            <div class="bannner-apps">
-                                <div class="apps-show-banner">
-                                    <h5>قم بالترقية الأن</h5>
-                                    <p>قم بترقية حسابك حتي تتمكن من التمتع بميزات تساعدك في تحسين
-                                        عملية البيع والوصول لعدد أكبر من المستخدمين</p>
-                                    <a href=""><img src="images/tarqia-app.png"></a>
-                                </div>
-                            </div>
+                            @include('dashboard.includes.banner_apps')
+
 
                             <div class="sec-sec-row">
                                 <div class="title-box-chart">
@@ -29,7 +23,8 @@
                                                     <div class="product-percen-sub">
                                                         <div class="chart" data-percent="20"
                                                             data-scale-color="#EE504F">
-                                                            <span> <strong>{{ count($pendding_orders) }}</strong> <br> قطعة
+                                                            <span> <strong>{{ count($pendding_orders) }}</strong> <br>
+                                                                قطعة
                                                             </span>
                                                         </div>
                                                     </div>
@@ -71,7 +66,8 @@
                                                     <div class="product-percen-sub">
                                                         <div class="chart" data-percent="20"
                                                             data-scale-color="#EE504F">
-                                                            <span> <strong>{{ count($completed_orders) }}</strong> <br> قطعة
+                                                            <span> <strong>{{ count($completed_orders) }}</strong> <br>
+                                                                قطعة
                                                             </span>
                                                         </div>
                                                     </div>
@@ -93,7 +89,8 @@
                                                     <div class="product-percen-sub">
                                                         <div class="chart" data-percent="20"
                                                             data-scale-color="#EE504F">
-                                                            <span> <strong>{{ count($rejected_orders) }}</strong> <br> قطعة
+                                                            <span> <strong>{{ count($rejected_orders) }}</strong> <br>
+                                                                قطعة
                                                             </span>
                                                         </div>
                                                     </div>

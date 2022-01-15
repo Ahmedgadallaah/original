@@ -10,17 +10,7 @@
                     <div class="row">
                         <!-- ****************************** Middle-All ****************************** -->
                         <div class="col-md-8">
-                            <div class="bannner-apps">
-                                <div class="apps-show-banner">
-                                    <h5>قم بإدارة متجرك في أي مكان</h5>
-                                    <p>فم بإدارة أعمالك ومتجرك من أي مكان من خلال تطبيق التاجر الذي
-                                        يساعدك في ذلك <span>حمل التطبيق الأن</span></p>
-
-
-                                    <a href=""><img src="{{ asset('dash/images/app-store.png') }}"></a>
-                                    <a href=""><img src="{{ asset('dash/images/play-store.png') }}"></a>
-                                </div>
-                            </div>
+                            @include('dashboard.includes.banner_apps')
 
                             <div class="sec-sec-row">
                                 <div class="row">
@@ -109,7 +99,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="show-all-link">
-                                                            <span><a href="{{ route('part-request') }}">مشاهده الكل</a></span>
+                                                            <span><a href="{{ route('part-request') }}">مشاهده
+                                                                    الكل</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,7 +164,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="show-all-link">
-                                                            <span><a href="{{ route('buy-orders') }}">مشاهده الكل</a></span>
+                                                            <span><a href="{{ route('buy-orders') }}">مشاهده
+                                                                    الكل</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -243,15 +235,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
     <script>
-
         let myChart = document.getElementById('myChart').getContext('2d');
         let massPopChart = new Chart(myChart, {
             type: 'bar',
             data: {
-                labels:  <?php echo json_encode($date_array) ?> ,
+                labels: <?php echo json_encode($date_array); ?>,
                 datasets: [{
                     label: 'Population',
-                    data: <?php echo json_encode($array_values) ?>  ,
+                    data: <?php echo json_encode($array_values); ?>,
                     backgroundColor: '#EE504F',
                     borderWidth: 1,
                     borderColor: '#fff',

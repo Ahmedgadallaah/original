@@ -8,14 +8,7 @@
                     <div class="row">
                         <!-- ****************************** Middle-All ****************************** -->
                         <div class="col-md-8">
-                            <div class="bannner-apps">
-                                <div class="apps-show-banner">
-                                    <h5>قم بالترقية الأن</h5>
-                                    <p>قم بترقية حسابك حتي تتمكن من التمتع بميزات تساعدك في تحسين
-                                        عملية البيع والوصول لعدد أكبر من المستخدمين</p>
-                                    <a href=""><img src="images/tarqia-app.png"></a>
-                                </div>
-                            </div>
+                            @include('dashboard.includes.banner_apps')
 
 
                             <br>
@@ -26,7 +19,7 @@
                                             <h6>طلبات الشراء</h6>
                                         </div>
                                     </div>
-                                   <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="parts-sec-all">
 
                                             <div class="parts-title-sec">
