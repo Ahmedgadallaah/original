@@ -10,38 +10,49 @@ use App\OrderItem;
 
 class OrderController extends Controller
 {
-    public function all_orders(Request $request){
+    public function all_orders(Request $request)
+    {
 
-        if($request->status){
-            $orders=OrderItem::where('product_dealer_id', auth()->id())
-            ->where('product_name' , 'like' , '%' .$request->search. '%')
-            ->whereHas('order' ,function ($q)  use($request){
-                $q->where('status',$request->status);
-            })->orderBy('created_at','desc')->get();
-        }else{
-            $orders=OrderItem::where('product_dealer_id', auth()->id())
-             ->where('product_name' , 'like' , '%' .$request->search. '%')
-            ->whereHas('order' ,function ($q) {
-                $q->where('status',0)->orWhere('status',1);
-            })->orderBy('created_at','desc')->get();
+
+        if (isset($request->status)) {
+            $orders = OrderItem::where('product_dealer_id', auth()->id())
+                ->where('product_name', 'like', '%' . $request->search . '%')
+                ->whereHas('order', function ($q)  use ($request) {
+                    $q->where('status', $request->status);
+                })->orderBy('created_at', 'desc')->get();
+        } else {
+
+            $orders = OrderItem::where('product_dealer_id', auth()->id())
+                ->where('product_name', 'like', '%' . $request->search . '%')
+                ->whereHas('order', function ($q) {
+                $q->where('status', 0)->orWhere('status', 1);
+                })->orderBy('created_at', 'desc')->get();
         }
 
 
 
-                $pendding_orders=OrderItem::whereHas('order' ,function ($q) {$q->where('status',0);})->with('order')->get();
-                $shipped_orders=OrderItem::whereHas('order' ,function ($q) {$q->Where('status',1);})->with('order')->get();
-                $completed_orders=OrderItem::whereHas('order',function ($q) {$q->Where('status',2);})->with('order')->get();
-                $rejected_orders=OrderItem::whereHas('order',function ($q) {$q->Where('status',3);})->with('order')->get();
+        $pendding_orders = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($q) {
+            $q->where('status', 0);
+        })->with('order')->get();
+        $shipped_orders = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($q) {
+            $q->Where('status', 1);
+        })->with('order')->get();
+        $completed_orders = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($q) {
+            $q->Where('status', 2);
+        })->with('order')->get();
+        $rejected_orders = OrderItem::where('product_dealer_id', auth()->id())->whereHas('order', function ($q) {
+            $q->Where('status', 3);
+        })->with('order')->get();
 
-            return view('dashboard.buy-request')->with([
-                'orders'=>$orders,
-                'pendding_orders'=>$pendding_orders,
-                'shipped_orders'=>$shipped_orders,
-                'completed_orders'=>$completed_orders,
-                'rejected_orders'=>$rejected_orders,
-                'search'=>$rejected_orders,
-            ]);
-            //    return view('dashboard.products.edit_product2', $data);
+        return view('dashboard.buy-request')->with([
+            'orders' => $orders,
+            'pendding_orders' => $pendding_orders,
+            'shipped_orders' => $shipped_orders,
+            'completed_orders' => $completed_orders,
+            'rejected_orders' => $rejected_orders,
+            'search' => $rejected_orders,
+        ]);
+        //    return view('dashboard.products.edit_product2', $data);
     }
 
     // public function update_status(Request $request){

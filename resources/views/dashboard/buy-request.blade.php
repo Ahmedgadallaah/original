@@ -151,7 +151,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="prod-img-parts">
-                                                                        <img src="{{ Storage::disk('public')->url($order->image) ?? '' }}"
+                                                                        <img src="{{ Storage::disk('public')->url($order->product->image) ?? '' }}"
                                                                             width="100%">
                                                                     </div>
                                                                 </div>
